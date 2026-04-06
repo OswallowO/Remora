@@ -31,3 +31,9 @@
 ## 授權
 
 本軟體僅供授權用戶使用，原始碼不公開。
+
+## Screenshots
+<img width="1919" height="988" alt="image" src="https://github.com/user-attachments/assets/29bf3ec0-0929-4482-8ce9-6aa665a31130" />
+<img width="1885" height="400" alt="image" src="https://github.com/user-attachments/assets/ccef3100-b3e0-4029-85ee-11667032da25" />
+<img width="1856" height="381" alt="image" src="https://github.com/user-attachments/assets/660bf3cb-7e75-4bab-88d5-98e00d94859b" />
+<img width="1373" height="883" alt="image" src="https://github.com/user-attachments/assets/92aed3d5-7818-4de5-ba36-eb1e10576bf8" />
