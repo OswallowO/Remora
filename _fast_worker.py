@@ -276,6 +276,12 @@ def fast_evaluator(params, dates, cache, groups, dispo_list, trial=None):
                             hi_today   = stock_dfs[sym][m].get('highest', p_now)
                             _p_height = params.get('min_height_pct', _get('min_height_pct', 0))
                             if prev_close and prev_close > 0 and (hi_today - prev_close) / prev_close * 100 < _p_height: continue
+                            # 不過高條件
+                            _req_nbh = params.get('require_not_broken_high', _get('require_not_broken_high', False))
+                            if _req_nbh:
+                                _c_now = stock_dfs[sym][m].get('close', 0)
+                                _h_now = stock_dfs[sym][m].get('highest', _c_now)
+                                if _c_now >= _h_now and _h_now > 0: continue
                             _min_elig = params.get('min_eligible_avg_vol', _get('min_eligible_avg_vol', 0))
                             if _min_elig > 0 and _cum_vol.get(sym, 0) / (m + 1) < _min_elig: continue
                             _vmin_range = params.get('volatility_min_range', _get('volatility_min_range', 0))
@@ -289,10 +295,10 @@ def fast_evaluator(params, dates, cache, groups, dispo_list, trial=None):
                             # min_close_price: 收盤價必須 >= min_close_price（對齊 process_group_data）
                             _min_cp = _get('min_close_price', 0)
                             if _min_cp > 0 and p_now < _min_cp: continue
-                            eligible.append({'sym': sym, 'rise': r_now, 'p_ent': p_now, 'hi': hi_today})
+                            eligible.append({'sym': sym, 'rise': r_now, 'p_ent': p_now, 'hi': hi_today, 'total_vol': _cum_vol.get(sym, 0)})
 
-                        # allow_leader_entry: 若無合格跟隨股且設定允許，嘗試進場領漲股（對齊 process_group_data）
-                        if not eligible and _get('allow_leader_entry', False) and leader and leader in stock_dfs and m < len(stock_dfs[leader]):
+                        # allow_leader_entry: 領漲股也加入候選（對齊 process_group_data 85克策略）
+                        if _get('allow_leader_entry', True) and leader and leader in stock_dfs and m < len(stock_dfs[leader]) and leader not in [e['sym'] for e in eligible]:
                             _ldr_row = stock_dfs[leader][m]
                             _ldr_close = _ldr_row['close']
                             _ldr_rise = _ldr_row.get('rise', 0)
@@ -304,10 +310,14 @@ def fast_evaluator(params, dates, cache, groups, dispo_list, trial=None):
                                     _ldr_close < _cap_le * 15 and
                                     (_min_cp_le <= 0 or _ldr_close >= _min_cp_le)):
                                 _ldr_hi = _ldr_row.get('highest', _ldr_close)
-                                eligible.append({'sym': leader, 'rise': _ldr_rise, 'p_ent': _ldr_close, 'hi': _ldr_hi})
+                                eligible.append({'sym': leader, 'rise': _ldr_rise, 'p_ent': _ldr_close, 'hi': _ldr_hi, 'total_vol': _cum_vol.get(leader, 0)})
 
                         if eligible:
-                            eligible.sort(key=lambda x: x['rise'])
+                            _p_sort = params.get('stock_sort_mode', 'volume')
+                            if _p_sort == 'volume':
+                                eligible.sort(key=lambda x: -x.get('total_vol', 0))
+                            else:
+                                eligible.sort(key=lambda x: x['rise'])
 
                             _fee_r = _get('transaction_fee', 0.1425) * 0.01 * _get('transaction_discount', 18.0) * 0.01
                             for item_a in eligible:
