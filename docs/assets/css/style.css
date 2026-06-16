@@ -186,6 +186,24 @@ footer .fcol a:hover{color:var(--accent2)}
 .faq details[open] summary::after{content:"–"}
 .faq p{color:var(--dim);font-size:14.5px;padding:0 0 16px;line-height:1.7}
 
+/* ── Interactive chart toggle ── */
+.chart-toggle{display:flex;gap:8px;padding:10px 12px 4px}
+.chart-toggle button{background:var(--panel2);border:1px solid var(--border2);color:var(--dim);
+  padding:5px 13px;border-radius:7px;font-size:13px;cursor:pointer;font-family:var(--mono);transition:.2s}
+.chart-toggle button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.chart-toggle button:hover{color:var(--bright)}
+#liveKchart{width:100%;height:340px}
+.chart-hint{font-size:11px;color:#5b6675;padding:2px 14px 8px;font-family:var(--sans)}
+
+/* ── Trades waterfall ── */
+.wfrow{display:flex;align-items:center;gap:10px;margin:8px 0;font-family:var(--mono);font-size:13px}
+.wfrow .wfs{width:46px;color:var(--text)}
+.wfrow .wfbar{flex:1;background:var(--panel2);border-radius:4px;height:20px;overflow:hidden}
+.wfrow .wfbar span{display:block;height:100%;border-radius:4px;width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.wfrow .wfbar .wfg{background:linear-gradient(90deg,#0e9d6a,#16c784)}
+.wfrow .wfbar .wfr{background:linear-gradient(90deg,#b32630,#ea3943)}
+.wfrow .wfv{width:90px;text-align:right;font-weight:700}
+
 /* ── Live indicator ── */
 .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);
   margin-right:6px;box-shadow:0 0 8px var(--green);animation:pulse 1.4s ease-in-out infinite;vertical-align:middle}
