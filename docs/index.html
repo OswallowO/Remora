@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REMORA — 台股當沖機器學習執行終端</title>
+<meta name="description" content="REMORA 是台股當沖的機器學習自動交易平台:OPT8c 三套 ML 引擎、自動選股、即時 K 線、三區工作台、Discord/Web 遠端監控。">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><span class="dot"></span>REMORA</a>
+  <button class="nav-toggle" aria-label="menu">☰</button>
+  <div class="nav-links">
+    <a href="#engine">策略引擎</a>
+    <a href="#workspace">盤中工作台</a>
+    <a href="#server">伺服器監控</a>
+    <a href="performance.html">績效</a>
+    <a href="features.html">完整功能</a>
+    <a href="changelog.html">更新日誌</a>
+    <a class="nav-gh" href="https://github.com/OswallowO/Remora" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub · OswallowO/Remora"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a class="nav-cta" href="#download">下載</a>
+  </div>
+</div></nav>
+
+<!-- Hero -->
+<header class="hero"><div class="wrap">
+  <span class="tag">v2.1.0 · client ⇄ server v1.1.0</span>
+  <h1>台股當沖的<br><span class="grad">機器學習執行終端</span></h1>
+  <p class="lead">OPT8c 三套機器學習引擎自動選股與決策、即時 tick K 線、專業券商級三區工作台,並以 Discord 與 Web 儀表板遠端監控。盤中、回測、訓練模型三者<b>逐筆 100% 等價</b>。</p>
+  <div class="hero-btns">
+    <a class="btn btn-primary" href="#download">↓ 下載 REMORA</a>
+    <a class="btn btn-ghost" href="performance.html">查看回測績效</a>
+  </div>
+
+  <div class="stats reveal">
+    <div class="cell"><div class="num mono" data-to="3" data-pre="" data-suf=" 套">3 套</div><div class="lbl">並行 ML 進場引擎</div></div>
+    <div class="cell"><div class="num mono" data-to="16" data-pre="" data-suf="/19">16/19</div><div class="lbl">季正報酬(2022–2026 回測)</div></div>
+    <div class="cell"><div class="num mono" data-to="100" data-pre="" data-suf="%">100%</div><div class="lbl">盤中=回測=模型 等價</div></div>
+    <div class="cell"><div class="num mono" data-to="0" data-pre="" data-suf=" 行">0 行</div><div class="lbl">人工挑股(全自動 stocklist)</div></div>
+  </div>
+</div></header>
+
+<!-- Engine -->
+<section id="engine"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">OPT8C ENGINE</div>
+    <h2>三套機器學習引擎,並行決策</h2>
+    <p>每分鐘對當日候選股以三套模型並行評分,通過多道前置閘門後,由分數最高且過門檻者進場。出場採依動能調整的動態停損。</p>
+  </div>
+  <div class="frow reveal">
+    <div class="ftext">
+      <div class="ficon">ENTRY · 三路徑</div>
+      <h3>籌碼差 · 漲停反轉 · 拉高跟漲</h3>
+      <p>三套各自獨立的機器學習模型同時運作,涵蓋三種市場情境;以純 K 線特徵即時推論,不依賴即時籌碼讀取。</p>
+      <ul>
+        <li>多道前置閘門過濾,取分數 margin 最大者進場</li>
+        <li>動態停損依領漲動能分檔,守住下檔風險</li>
+        <li>每日自動 stocklist 選股 — 拔除人工清單依賴</li>
+      </ul>
+    </div>
+    <div class="shot">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>OPT8c · ML radar</span></div>
+      <div class="body">
+        <div class="mrow"><span>籌碼差</span><span class="tag-pill" style="background:rgba(240,185,11,.15);color:var(--gold)">score 0.81 ▲</span></div>
+        <div class="mrow"><span>漲停反轉</span><span class="tag-pill" style="background:rgba(22,199,132,.15);color:var(--green)">score 0.64</span></div>
+        <div class="mrow"><span>拉高跟漲</span><span class="tag-pill" style="background:rgba(139,151,166,.15);color:var(--dim)">score 0.39</span></div>
+        <div class="mockchart" data-seq="30,42,38,50,46,60,55,68,62,74,70,58,64,80,76"></div>
+      </div>
+    </div>
+  </div>
+  <div class="frow rev reveal">
+    <div class="ftext">
+      <div class="ficon">VALIDATION · 防過擬合</div>
+      <h3>跨年樣本外 + 全市況驗證</h3>
+      <p>模型只用過去資料訓練,對「沒看過的」未來市況仍正報酬;2022–2026 隨機抽樣回測 19 季中 16 季為正,證明是市況依賴而非過度配適。</p>
+      <ul>
+        <li>4 季 walk-forward + 2026 真實樣本外(OOS)</li>
+        <li>2022 大空頭(訓練前)表現最強 → 非過擬合</li>
+        <li>盤中引擎逐筆 100% 等價訓練模型(誤差 0.0000)</li>
+      </ul>
+    </div>
+    <div class="shot">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>walk-forward · OOS</span></div>
+      <div class="body"><div class="mockchart" data-seq="20,28,24,36,40,52,48,60,66,58,72,80,76,88,92"></div>
+        <div class="mrow" style="border:0"><span class="dim">4 季累積(模型尺度)</span><span class="green mono">+548%</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- Workspace -->
+<section id="workspace" class="alt"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">WORKSPACE</div>
+    <h2>盤中工作台 — 看盤與下單合一</h2>
+    <p>一個畫面整合即時報價、多日無縫 K 線、五檔、下單匣、風控水位與帳戶總覽;全面對齊專業券商終端的視覺密度。</p>
+  </div>
+  <div class="frow reveal">
+    <div class="ftext">
+      <div class="ficon">LIVE · 即時 tick</div>
+      <h3>即時跳動 K 線 + 量能副圖</h3>
+      <p>從每分鐘輪詢升級為毫秒級 tick 聚合;當前 K 棒即時長大,搭配成交量副圖與進出場標記。</p>
+      <ul>
+        <li>1 / 5 / 15 / 60 分 + 日線,毫秒級更新</li>
+        <li>純黑主題 + 台股/美股漲跌色切換</li>
+        <li>真單 / 模擬 徽章 + 一鍵鎖單(Kill Switch)</li>
+      </ul>
+    </div>
+    <div class="shot">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>盤中工作台 · live</span></div>
+      <div class="body">
+        <div class="mrow"><span>2330 台積電</span><span class="green mono">1,042 ▲1.8%</span></div>
+        <div class="mockchart" data-seq="60,66,58,70,64,76,72,82,78,68,74,86,80,90,84"></div>
+        <div class="ph" style="min-height:60px">📷 實機截圖待補:盤中三區工作台</div>
+      </div>
+    </div>
+  </div>
+  <div class="cards reveal" style="margin-top:20px">
+    <div class="card"><div class="ci">🎯</div><h4>下單匣</h4><p>買賣雙 tab、價格/張數 ±微調、LMT/MKT、ROD/IOC/FOK,直式券商佈局。</p></div>
+    <div class="card"><div class="ci">🛡️</div><h4>即時風控水位</h4><p>今日進場 X/5、距熔斷 Y/4、日虧上限,逼近上限即變色提醒。</p></div>
+    <div class="card"><div class="ci">📋</div><h4>委託管理</h4><p>委託中狀態 + 右鍵改價 / 改量 / 撤單,即時同步券商回報。</p></div>
+  </div>
+</div></section>
+
+<!-- Backtest + Performance teaser -->
+<section id="perf"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">BACKTEST & PERFORMANCE</div>
+    <h2>透明回測 — 不是黑箱</h2>
+    <p>同一套 OPT8c 引擎跑回測與實盤;一年回測 GUI 與獨立重跑「一元不差」。績效完整公開,並誠實標註限制。</p>
+  </div>
+  <div class="frow reveal">
+    <div class="ftext">
+      <div class="ficon">TRANSPARENT</div>
+      <h3>回測 = 實盤 = 模型</h3>
+      <p>我們把「回測偏樂觀」的部分也誠實揭露(回測未套每日 5 檔上限、未含真實滑點),讓你看到的是可被獨立驗證的數字。</p>
+      <ul>
+        <li>一年 10 萬/檔回測:+356,977 元 / 875 筆</li>
+        <li>4 季 walk-forward 累積 +548%(模型尺度)</li>
+        <li>最大回撤 −21.6% · 最慘單日 −9.1%</li>
+      </ul>
+      <a class="btn btn-ghost" href="performance.html" style="margin-top:18px">查看完整績效與免責 →</a>
+    </div>
+    <div class="shot">
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>equity curve · 4Q walk-forward</span></div>
+      <div class="body" style="padding:0"><img src="assets/img/equity_curve.png" alt="回測權益曲線"></div>
+    </div>
+  </div>
+  <div class="disclaimer reveal">⚠️ 上述為<b>回測(歷史模擬)結果,非實際交易績效</b>。「+548%」為各筆報酬率加總(非複利成長);回測採模型尺度、未含真實滑點與部分成交。<b>過去績效不代表未來表現,投資有風險。</b></div>
+</div></section>
+
+<!-- Server -->
+<section id="server" class="alt"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">SERVER v1.1.0</div>
+    <h2>遠端監控 — Discord + Web 儀表板</h2>
+    <p>從手機或瀏覽器掌握系統狀態:Discord 指令查詢、事件推播、可自訂的推播積木,以及 magic-link 登入的 Web 儀表板。</p>
+  </div>
+  <div class="cards reveal">
+    <div class="card"><div class="ci">🤖</div><h4>Discord 指令</h4><p>/status、/positions、/pnl、/risk、/groups… 隨時查詢系統與持倉。</p></div>
+    <div class="card"><div class="ci">🔔</div><h4>事件推播</h4><p>進場 / 出場 / 停損 / 風控熔斷 / 每日盤後報告,可逐項訂閱。</p></div>
+    <div class="card"><div class="ci">🧩</div><h4>推播積木</h4><p>自訂事件訊息模板與頻道、權限矩陣,組合出你要的通知流。</p></div>
+    <div class="card"><div class="ci">📊</div><h4>Web 儀表板</h4><p>magic-link 登入,即時持倉、警示中心、經濟行事曆、電源控制。</p></div>
+    <div class="card"><div class="ci">📅</div><h4>經濟行事曆</h4><p>高影響事件提前 30 分鐘預警(美/日/台/歐)。</p></div>
+    <div class="card"><div class="ci">🔒</div><h4>安全綁定</h4><p>client ⇄ server 強綁定、雙 client 去重、稽核日誌。</p></div>
+  </div>
+</div></section>
+
+<!-- Download -->
+<section id="download"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">GET STARTED</div>
+    <h2>下載 REMORA</h2>
+    <p>Windows 桌面應用,內建自動更新。出廠為模擬模式 + 安全資金預設,實盤需手動切換確認。</p>
+  </div>
+  <div class="hero-btns reveal">
+    <a class="btn btn-primary" href="changelog.html">↓ Windows 安裝程式(見更新日誌)</a>
+    <a class="btn btn-ghost" href="features.html">完整功能清單</a>
+  </div>
+  <p style="text-align:center;color:var(--dim);font-size:13px;margin-top:18px">內建自動更新:新版發佈後,client 會自動偵測並一鍵更新(免管理員、免解除安裝)。</p>
+</div></section>
+
+<!-- Footer -->
+<footer><div class="wrap">
+  <div class="fcol">
+    <div class="brand" style="margin-bottom:12px"><span class="dot"></span>REMORA</div>
+    <p style="max-width:280px">台股當沖機器學習執行終端。<br>client v2.1.0 ⇄ server v1.1.0。</p>
+  </div>
+  <div class="fcol"><h5>產品</h5>
+    <a href="#engine">策略引擎</a><a href="#workspace">盤中工作台</a><a href="#server">伺服器監控</a><a href="performance.html">績效</a>
+  </div>
+  <div class="fcol"><h5>資源</h5>
+    <a href="features.html">完整功能</a><a href="changelog.html">更新日誌</a><a href="performance.html">回測與免責</a>
+  </div>
+</div>
+<div class="wrap"><div class="foot-note">
+  © 2026 REMORA · Private. 本網站所載績效為回測(歷史模擬)結果,非實際交易績效;過去績效不代表未來表現。交易有風險,請審慎評估。本平台不構成投資建議。
+</div></div></footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

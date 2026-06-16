@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>更新日誌 — REMORA</title>
+<meta name="description" content="REMORA 版本更新日誌,從 v1.9.8.6 至今。">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><span class="dot"></span>REMORA</a>
+  <button class="nav-toggle" aria-label="menu">☰</button>
+  <div class="nav-links">
+    <a href="index.html#engine">策略引擎</a>
+    <a href="index.html#workspace">盤中工作台</a>
+    <a href="performance.html">績效</a>
+    <a href="features.html">完整功能</a>
+    <a href="changelog.html" style="color:var(--bright)">更新日誌</a>
+    <a class="nav-gh" href="https://github.com/OswallowO/Remora" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub · OswallowO/Remora"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a class="nav-cta" href="index.html#download">下載</a>
+  </div>
+</div></nav>
+
+<header class="hero" style="padding:72px 0 36px"><div class="wrap">
+  <span class="tag">CHANGELOG</span>
+  <h1 style="font-size:clamp(30px,5vw,46px)">更新日誌</h1>
+  <p class="lead">每一版的重點更新。我們持續以穩定度、效能與使用體驗為優先。</p>
+</div></header>
+
+<section style="padding-top:20px"><div class="wrap">
+  <div class="timeline">
+
+    <div class="rel cur reveal">
+      <div class="v"><b>v2.1.0</b><span class="date">最新 · 開發中</span><span class="badge new">重大更新</span></div>
+      <div class="ttl">機器學習執行終端 — 三區工作台 + 自動選股</div>
+      <ul>
+        <li>進場引擎全面升級為機器學習架構,並行多模型評分決策</li>
+        <li>每日候選股自動產生,移除人工清單依賴</li>
+        <li>介面重構為「盤中工作台 / 回測 / 設定」三區,看盤與下單合一</li>
+        <li>即時 tick K 線、當前跳動棒與成交量副圖;全面對齊專業券商視覺</li>
+        <li>風控:每日進場上限 + 連續停損熔斷 + 日虧上限一鍵鎖單</li>
+        <li>歷史資料回補至 2021–2026;伺服器端升級 v1.1.0(遠端風控指令)</li>
+      </ul>
+    </div>
+
+    <div class="rel reveal">
+      <div class="v"><b>v2.0.4</b><span class="date">2026-05-21</span><span class="badge">穩定度</span></div>
+      <div class="ttl">實盤驗證後的完整重整</div>
+      <ul>
+        <li>首次正式實盤後的三輪重整,修補 90+ 項問題</li>
+        <li>交易安全強化:下單模式一致性守護、跨日合約自動刷新</li>
+        <li>即時 K 線改為毫秒級 tick 聚合,新增量能柱與進出場標記</li>
+        <li>Telegram 分類通知(9 類)、委託管理(改價/改量/撤單)</li>
+        <li>損益計算統一(含手續費與證交稅)</li>
+      </ul>
+    </div>
+
+    <div class="rel reveal">
+      <div class="v"><b>v2.0.3</b><span class="date">2026-05-17</span><span class="badge">里程碑</span></div>
+      <div class="ttl">自 v1.9.13 後首次正式釋出</div>
+      <ul>
+        <li>整合多個內部迭代,一次升級至 v2.0.3</li>
+        <li>即時架構與使用者介面大幅翻新</li>
+        <li>版本控制與發佈流程正式化</li>
+      </ul>
+    </div>
+
+    <div class="rel reveal">
+      <div class="v"><b>v1.9.13</b><span class="date">2026-04-09</span></div>
+      <div class="ttl">策略最佳化引擎 + 穩定度分析</div>
+      <ul>
+        <li>策略參數自動最佳化流程</li>
+        <li>新增穩定度分析圖表</li>
+        <li>多個系統的錯誤修補</li>
+      </ul>
+    </div>
+
+    <div class="rel reveal">
+      <div class="v"><b>v1.9.12</b><span class="date">2026-04-08</span></div>
+      <div class="ttl">首次實盤回饋修補</div>
+      <ul>
+        <li>修復首次實盤測試發現的五大問題</li>
+        <li>停損機制與回報路由改善</li>
+      </ul>
+    </div>
+
+    <div class="rel reveal">
+      <div class="v"><b>v1.9.11</b><span class="date">2026-04-08</span></div>
+      <div class="ttl">停損回補機制改善</div>
+      <ul>
+        <li>修正停損回補與回報處理</li>
+        <li>實盤測試回饋整併</li>
+      </ul>
+    </div>
+
+    <div class="rel reveal">
+      <div class="v"><b>v1.9.10</b><span class="date">2026-04-07</span></div>
+      <div class="ttl">回測與實盤邏輯一致性</div>
+      <ul>
+        <li>統一回測與實盤決策邏輯</li>
+        <li>記憶體使用最佳化、介面更新</li>
+      </ul>
+    </div>
+
+    <div class="rel reveal">
+      <div class="v"><b>v1.9.9</b><span class="date">2026-04-07</span></div>
+      <div class="ttl">自動更新機制上線</div>
+      <ul>
+        <li>新增應用程式自動更新機制</li>
+        <li>記憶體最佳化與邏輯一致性修正</li>
+      </ul>
+    </div>
+
+    <div class="rel reveal">
+      <div class="v"><b>v1.9.8.6</b><span class="date">2026-04-06</span><span class="badge">介面重構</span></div>
+      <div class="ttl">分頁式介面 + 即時交易系統</div>
+      <ul>
+        <li>介面由彈窗式重構為分頁式佈局</li>
+        <li>新增即時交易系統與策略最佳化引擎</li>
+      </ul>
+    </div>
+
+  </div>
+  <p style="text-align:center;color:var(--dim);font-size:13px;margin-top:40px">完整技術變更請參考各版本 release notes。</p>
+</div></section>
+
+<footer><div class="wrap"><div class="foot-note" style="border:0;margin:0;padding:0">
+  © 2026 REMORA · Private. 過去績效不代表未來表現,交易有風險。
+</div></div></footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

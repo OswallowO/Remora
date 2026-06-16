@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>完整功能 — REMORA</title>
+<meta name="description" content="REMORA client v2.1.0 與 server v1.1.0 完整功能清單。">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><span class="dot"></span>REMORA</a>
+  <button class="nav-toggle" aria-label="menu">☰</button>
+  <div class="nav-links">
+    <a href="index.html#engine">策略引擎</a>
+    <a href="index.html#workspace">盤中工作台</a>
+    <a href="performance.html">績效</a>
+    <a href="features.html" style="color:var(--bright)">完整功能</a>
+    <a href="changelog.html">更新日誌</a>
+    <a class="nav-gh" href="https://github.com/OswallowO/Remora" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub · OswallowO/Remora"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a class="nav-cta" href="index.html#download">下載</a>
+  </div>
+</div></nav>
+
+<header class="hero" style="padding:72px 0 30px"><div class="wrap">
+  <span class="tag">FEATURES · 完整功能</span>
+  <h1 style="font-size:clamp(30px,5vw,46px)">完整功能清單</h1>
+  <p class="lead">client v2.1.0(交易終端)+ server v1.1.0(遠端監控)。以下涵蓋兩端主要功能。</p>
+</div></header>
+
+<!-- CLIENT -->
+<section style="padding-top:24px"><div class="wrap">
+  <div class="sec-head reveal" style="margin-bottom:34px">
+    <div class="kick">CLIENT · 交易終端</div>
+    <h2 style="font-size:30px">桌面客戶端 v2.1.0</h2>
+  </div>
+
+  <div class="cards reveal">
+    <div class="card"><div class="ci">🧠</div><h4>OPT8c 進場引擎</h4><p>三套機器學習模型並行評分(籌碼差 / 漲停反轉 / 拉高跟漲),多道前置閘門,取分數最高者進場。</p></div>
+    <div class="card"><div class="ci">📉</div><h4>動態停損出場</h4><p>依領漲動能分檔的動態停損,停損價硬上限保護,尾盤自動結算。</p></div>
+    <div class="card"><div class="ci">🗂️</div><h4>每日自動選股</h4><p>雲端管線產生特徵 → 本機 achip 籌碼計算 → 自動 stocklist,無需人工清單。</p></div>
+    <div class="card"><div class="ci">🖥️</div><h4>盤中工作台</h4><p>看盤 + 下單合一:報價清單、多日 K 線、五檔、下單匣、風控水位、帳戶總覽。</p></div>
+    <div class="card"><div class="ci">📈</div><h4>即時 tick K 線</h4><p>毫秒級跳動棒 + 量能副圖 + 進出場標記;1/5/15/60 分 + 日線。</p></div>
+    <div class="card"><div class="ci">🎫</div><h4>下單匣</h4><p>買賣雙 tab、價格/張數 ±微調、價別 LMT/MKT、效期 ROD/IOC/FOK。</p></div>
+    <div class="card"><div class="ci">📋</div><h4>委託管理</h4><p>委託中狀態顯示、右鍵改價 / 改量 / 撤單,即時同步券商回報。</p></div>
+    <div class="card"><div class="ci">💼</div><h4>持倉面板</h4><p>10 欄即時持倉、未實現損益、停損價、右鍵平倉 / 修改停損 / 看 K 線。</p></div>
+    <div class="card"><div class="ci">📊</div><h4>績效儀表板</h4><p>6 張卡片(總損益、筆勝率、日勝率、平均每日…)+ 可編輯交易紀錄表(FIFO 配對)。</p></div>
+    <div class="card"><div class="ci">⏮️</div><h4>回測工作區</h4><p>日期區間回放、變速回放、左終端 + 右明細表、跨日加粗、賺賠上色。</p></div>
+    <div class="card"><div class="ci">🛡️</div><h4>風控與 Kill Switch</h4><p>每日進場上限、連續停損熔斷、日虧上限、Esc×2 一鍵鎖單、即時水位顯示。</p></div>
+    <div class="card"><div class="ci">🔴</div><h4>真單 / 模擬 徽章</h4><p>正式 / 模擬模式視覺徽章,送單前驗證模式一致性,不一致拒送。</p></div>
+    <div class="card"><div class="ci">🔔</div><h4>Telegram 通知</h4><p>9 類分類開關(進場/出場/停損/風控/對帳/連線/啟動/一般/嚴重)+ 總開關。</p></div>
+    <div class="card"><div class="ci">🎨</div><h4>主題系統</h4><p>純黑主題、台股/美股漲跌色切換、等寬數字、自動深色模式。</p></div>
+    <div class="card"><div class="ci">🔌</div><h4>券商連線</h4><p>永豐金 Shioaji(正式 + 模擬雙模式、CA 憑證);相容 Esun。</p></div>
+    <div class="card"><div class="ci">⬇️</div><h4>K 線資料採集</h4><p>月曆多選日期、一鍵採集,歷史涵蓋 2021–2026。</p></div>
+    <div class="card"><div class="ci">🔄</div><h4>自動更新</h4><p>偵測新版 → 一鍵下載替換 → 重啟,免管理員、免解除安裝。</p></div>
+    <div class="card"><div class="ci">📖</div><h4>新手教學</h4><p>內建多頁互動教學,涵蓋 API 設定、回測、盤中上線全流程。</p></div>
+  </div>
+</div></section>
+
+<!-- SERVER -->
+<section class="alt"><div class="wrap">
+  <div class="sec-head reveal" style="margin-bottom:34px">
+    <div class="kick">SERVER · 遠端監控</div>
+    <h2 style="font-size:30px">伺服器端 v1.1.0</h2>
+  </div>
+
+  <div class="cards reveal">
+    <div class="card"><div class="ci">🤖</div><h4>Discord 指令</h4><p>/status、/positions、/pnl、/risk、/groups、/strength、/history、/chip、/news… 完整查詢。</p></div>
+    <div class="card"><div class="ci">🔔</div><h4>事件推播</h4><p>進場 / 出場 / 族群觸發 / 每日盤後報告 / 風控熔斷,可逐項訂閱。</p></div>
+    <div class="card"><div class="ci">🧩</div><h4>推播積木</h4><p>自訂事件訊息模板、公共頻道指派、角色權限矩陣,組合通知流。</p></div>
+    <div class="card"><div class="ci">📊</div><h4>Web 儀表板</h4><p>magic-link 登入;主控台、自選股、警示建構器、族群、新聞、公開檢視、管理面板。</p></div>
+    <div class="card"><div class="ci">🚨</div><h4>警示中心</h4><p>自訂股票條件警示(漲跌幅 / 價位 / 量能 / 波動 / 連動),觸發即推播。</p></div>
+    <div class="card"><div class="ci">📅</div><h4>經濟行事曆</h4><p>月曆檢視 + 高影響事件提前 30 分鐘預警(美/日/台/歐)。</p></div>
+    <div class="card"><div class="ci">⚡</div><h4>Cloudflared 通道</h4><p>自動將本機儀表板發佈為公開 HTTPS,免 port forwarding。</p></div>
+    <div class="card"><div class="ci">🔒</div><h4>安全與綁定</h4><p>client ⇄ server 版本強綁定、雙 client 去重、API token 防護、稽核日誌。</p></div>
+    <div class="card"><div class="ci">⏻</div><h4>電源與自癒</h4><p>多種乾淨關閉方式、啟動自癒清殘留行程、PID 管理。</p></div>
+  </div>
+
+  <div style="text-align:center;margin-top:48px" class="reveal">
+    <a class="btn btn-primary" href="index.html#download">↓ 下載 REMORA</a>
+    <a class="btn btn-ghost" href="performance.html" style="margin-left:10px">查看績效</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="foot-note" style="border:0;margin:0;padding:0">
+  © 2026 REMORA · Private. 過去績效不代表未來表現,交易有風險,本平台不構成投資建議。
+</div></div></footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

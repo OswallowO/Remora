@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>回測績效 — REMORA</title>
+<meta name="description" content="REMORA OPT8c 引擎回測績效與完整免責聲明。">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><span class="dot"></span>REMORA</a>
+  <button class="nav-toggle" aria-label="menu">☰</button>
+  <div class="nav-links">
+    <a href="index.html#engine">策略引擎</a>
+    <a href="index.html#workspace">盤中工作台</a>
+    <a href="performance.html" style="color:var(--bright)">績效</a>
+    <a href="features.html">完整功能</a>
+    <a href="changelog.html">更新日誌</a>
+    <a class="nav-gh" href="https://github.com/OswallowO/Remora" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub · OswallowO/Remora"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a class="nav-cta" href="index.html#download">下載</a>
+  </div>
+</div></nav>
+
+<header class="hero" style="padding:72px 0 30px"><div class="wrap">
+  <span class="tag">PERFORMANCE · 回測</span>
+  <h1 style="font-size:clamp(30px,5vw,46px)">回測績效與<span class="grad">誠實免責</span></h1>
+  <p class="lead">我們公開完整回測數字,也清楚標註它的限制。以下全部為歷史模擬結果,非實際交易績效。</p>
+</div></header>
+
+<section style="padding-top:20px"><div class="wrap">
+  <div class="disclaimer reveal" style="margin-bottom:40px">
+    ⚠️ <b>重要免責聲明</b><br>
+    1. 以下所有數字為<b>回測(歷史模擬)結果,非實際交易績效</b>。<br>
+    2. 「累積報酬 %」為各筆交易報酬率之<b>加總,非複利資金成長</b>;實際資金成長依部位規模與資金配置而定。<br>
+    3. 回測採模型尺度,<b>未含真實滑點與部分成交</b>;內部研究顯示回測較實盤樂觀約 ~13%(近期波動市況)。<br>
+    4. <b>過去績效不代表未來表現;投資有風險。</b>本平台不構成投資建議。
+  </div>
+
+  <div class="sec-head reveal" style="margin-bottom:30px"><h2 style="font-size:28px">4 季 Walk-Forward(2025-04 ~ 2026-03)</h2></div>
+  <div class="shot reveal" style="margin-bottom:34px">
+    <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>equity curve + drawdown</span></div>
+    <div class="body" style="padding:0"><img src="assets/img/equity_curve.png" alt="回測權益曲線與回撤"></div>
+  </div>
+
+  <table class="ptable reveal" style="margin-bottom:50px">
+    <tr><th>指標</th><th>數值</th><th>備註</th></tr>
+    <tr><td>期間</td><td class="mono">2025-04 ~ 2026-03</td><td>4 季 walk-forward,含 2026Q1 樣本外</td></tr>
+    <tr><td>累積報酬(模型尺度)</td><td class="mono green">+548.4%</td><td>各筆報酬率加總,非複利</td></tr>
+    <tr><td>交易數</td><td class="mono">524 筆 / 220 日</td><td>平均約 2.4 筆/日</td></tr>
+    <tr><td>筆勝率</td><td class="mono">46.8%</td><td>低於 50%,但獲利金額 &gt; 虧損金額</td></tr>
+    <tr><td>日勝率</td><td class="mono">60.9%</td><td></td></tr>
+    <tr><td>最大回撤(MDD)</td><td class="mono red">−21.6%</td><td></td></tr>
+    <tr><td>最慘 / 最好單日</td><td class="mono">−9.1% / +28.6%</td><td>單筆最大虧損受停損上限保護</td></tr>
+    <tr><td>捕捉率(對標真實交易者)</td><td class="mono">~80.6%</td><td>逆向工程對標</td></tr>
+  </table>
+
+  <div class="sec-head reveal" style="margin-bottom:30px"><h2 style="font-size:28px">穩健度與一致性</h2></div>
+  <div class="cards reveal" style="margin-bottom:40px">
+    <div class="card"><div class="ci">🗓️</div><h4>16 / 19 季正報酬</h4><p>2022–2026 隨機抽樣 point-in-time 回測,跨越多種市況。</p></div>
+    <div class="card"><div class="ci">🧪</div><h4>真實樣本外</h4><p>2022 大空頭(模型訓練前)表現最強 → 市況依賴,非過度配適。</p></div>
+    <div class="card"><div class="ci">🎯</div><h4>逐筆 100% 等價</h4><p>盤中引擎 = 回測 = 訓練模型,進出場價誤差 0.0000。</p></div>
+    <div class="card"><div class="ci">💵</div><h4>一年回測</h4><p>10 萬/檔:+356,977 元 / 875 筆 / 筆勝率 43.2%(GUI 與獨立重跑一元不差)。</p></div>
+    <div class="card"><div class="ci">🛡️</div><h4>風控基準</h4><p>每日進場 5 / 連續停損熔斷 4 / 同族 1,由真實交易分布反推。</p></div>
+    <div class="card"><div class="ci">🔍</div><h4>不依報酬調參</h4><p>熔斷門檻由風險原則設定,刻意不依回測 PnL 反推(避免過擬合)。</p></div>
+  </div>
+
+  <div class="sec-head reveal" style="margin-bottom:24px"><h2 style="font-size:28px">盤中軟測試(實機模擬)</h2>
+    <p style="margin-top:10px">進入正式上線前的實機 sim 驗證,逐日累積中。</p></div>
+  <table class="ptable reveal">
+    <tr><th>交易日</th><th>進場</th><th>筆勝率</th><th>當日已實現</th><th>樣本</th></tr>
+    <tr><td class="mono">2026-06-16</td><td class="mono">5</td><td class="mono">40%</td><td class="mono green">+52,208</td><td>✅ 首個乾淨交易日</td></tr>
+  </table>
+  <p style="color:var(--dim);font-size:13px;margin-top:14px">乾淨樣本目前 N=1,尚不足以下結論,持續累積中。結案標準:≥20 個乾淨交易日且累積為正、邏輯與回測一致、無重大缺陷。</p>
+</div></section>
+
+<footer><div class="wrap"><div class="foot-note" style="border:0;margin:0;padding:0">
+  © 2026 REMORA · Private. 本頁所載績效為回測(歷史模擬)結果,非實際交易績效;過去績效不代表未來表現。交易有風險,本平台不構成投資建議。
+</div></div></footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
