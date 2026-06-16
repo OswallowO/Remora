@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>REMORA — 台股當沖機器學習執行終端</title>
 <meta name="description" content="REMORA 是台股當沖的機器學習自動交易平台:OPT8c 三套 ML 引擎、自動選股、即時 K 線、三區工作台、Discord/Web 遠端監控。">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="REMORA — 台股當沖機器學習執行終端">
+<meta property="og:description" content="OPT8c 三套 ML 引擎、自動選股、即時 K 線、三區工作台、Discord/Web 遠端監控。盤中=回測=模型逐筆 100% 等價。">
+<meta property="og:image" content="https://oswallowo.github.io/Remora/assets/img/og_image.png">
+<meta property="og:url" content="https://oswallowo.github.io/Remora/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="REMORA — 台股當沖機器學習執行終端">
+<meta name="twitter:description" content="OPT8c 三套 ML 引擎、自動選股、即時 K 線、遠端監控。">
+<meta name="twitter:image" content="https://oswallowo.github.io/Remora/assets/img/og_image.png">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -110,11 +120,17 @@
       </ul>
     </div>
     <div class="shot">
-      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>盤中工作台 · live</span></div>
-      <div class="body">
-        <div class="mrow"><span>2330 台積電</span><span class="green mono">1,042 ▲1.8%</span></div>
-        <div class="mockchart" data-seq="60,66,58,70,64,76,72,82,78,68,74,86,80,90,84"></div>
-        <div class="ph" style="min-height:60px">📷 實機截圖待補:盤中三區工作台</div>
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>盤中工作台 · 2026-06-16 模擬實測</span></div>
+      <div class="body" style="gap:4px">
+        <div class="pnl">
+          <div class="tot"><span class="lab">今日已實現損益</span><span class="val green">+52,208</span></div>
+          <div class="row"><span class="sym">6770</span><span class="px">▼ 75.30 → 71.20</span><span class="pl green">+102,688</span></div>
+          <div class="row"><span class="sym">1802</span><span class="px">▼ 70.50 → 68.30</span><span class="pl green">+57,643</span></div>
+          <div class="row"><span class="sym">2344</span><span class="px">▲ 196.50 → 200.00</span><span class="pl red">−38,963</span></div>
+          <div class="row"><span class="sym">3037</span><span class="px">▲ 969 → 986</span><span class="pl red">−37,909</span></div>
+          <div class="row"><span class="sym">2408</span><span class="px">▲ 403 → 410</span><span class="pl red">−31,251</span></div>
+          <div class="note">2026-06-16 模擬交易實測 · 2 勝 3 負 · 兩檔贏家夠大故全日淨賺。模擬結果,非實際績效。</div>
+        </div>
       </div>
     </div>
   </div>
@@ -169,6 +185,35 @@
   </div>
 </div></section>
 
+<!-- How it works -->
+<section id="how" class="alt"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">HOW IT WORKS</div>
+    <h2>三步開始</h2>
+    <p>從設定到自動盤中交易,只要三步。出廠為模擬模式,確認穩定再切實盤。</p>
+  </div>
+  <div class="steps reveal">
+    <div class="step"><h4>連接券商</h4><p>填入永豐金 Shioaji API(支援正式 + 模擬雙模式),一鍵驗證連線狀態。</p></div>
+    <div class="step"><h4>回測驗證</h4><p>用內建回測區跑歷史資料,確認策略表現與風控水位,熟悉操作。</p></div>
+    <div class="step"><h4>盤中自動</h4><p>09:00 前開啟盤中監控,系統自動選股、進場、停損、尾盤結算,並推播到手機。</p></div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section id="faq"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">FAQ</div>
+    <h2>常見問題</h2>
+  </div>
+  <div class="faq reveal">
+    <details><summary>需要哪家券商?</summary><p>目前以永豐金 Shioaji 為主(支援正式與模擬下單),並相容部分其他券商。需自備券商帳號與 API 權限。</p></details>
+    <details><summary>會不會直接動到真錢?</summary><p>不會。出廠預設為「模擬模式」+ 安全資金預設,且每次切換正式模式都需手動確認、送單前再驗證一致性。實盤前請充分測試。</p></details>
+    <details><summary>績效數字是真的嗎?</summary><p>站上績效為「回測(歷史模擬)」與「模擬交易實測」結果,皆非實際下單績效,並附完整免責。詳見<a href="performance.html" style="color:var(--accent2)">績效頁</a>。過去績效不代表未來。</p></details>
+    <details><summary>怎麼更新?</summary><p>內建自動更新:新版發佈後,程式會自動偵測並一鍵更新(免管理員、免解除安裝)。</p></details>
+    <details><summary>這是投資建議嗎?</summary><p>不是。REMORA 是交易工具,不構成任何投資建議;交易有風險,盈虧自負。</p></details>
+  </div>
+</div></section>
+
 <!-- Download -->
 <section id="download"><div class="wrap">
   <div class="sec-head reveal">
@@ -177,10 +222,10 @@
     <p>Windows 桌面應用,內建自動更新。出廠為模擬模式 + 安全資金預設,實盤需手動切換確認。</p>
   </div>
   <div class="hero-btns reveal">
-    <a class="btn btn-primary" href="changelog.html">↓ Windows 安裝程式(見更新日誌)</a>
+    <a class="btn btn-primary" href="https://github.com/OswallowO/Remora/releases" target="_blank" rel="noopener">↓ 前往 GitHub Releases 下載</a>
     <a class="btn btn-ghost" href="features.html">完整功能清單</a>
   </div>
-  <p style="text-align:center;color:var(--dim);font-size:13px;margin-top:18px">內建自動更新:新版發佈後,client 會自動偵測並一鍵更新(免管理員、免解除安裝)。</p>
+  <p style="text-align:center;color:var(--dim);font-size:13px;margin-top:18px">v2.1.0 最後軟測試中,即將釋出;Releases 提供目前最新版本。內建自動更新:新版發佈後程式會自動偵測並一鍵更新(免管理員、免解除安裝)。</p>
 </div></section>
 
 <!-- Footer -->
