@@ -120,16 +120,12 @@
       </ul>
     </div>
     <div class="shot">
-      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>盤中工作台 · 2026-06-16 模擬實測</span></div>
-      <div class="body" style="gap:4px">
-        <div class="pnl">
-          <div class="tot"><span class="lab">今日已實現損益</span><span class="val green">+52,208</span></div>
-          <div class="row"><span class="sym">6770</span><span class="px">▼ 75.30 → 71.20</span><span class="pl green">+102,688</span></div>
-          <div class="row"><span class="sym">1802</span><span class="px">▼ 70.50 → 68.30</span><span class="pl green">+57,643</span></div>
-          <div class="row"><span class="sym">2344</span><span class="px">▲ 196.50 → 200.00</span><span class="pl red">−38,963</span></div>
-          <div class="row"><span class="sym">3037</span><span class="px">▲ 969 → 986</span><span class="pl red">−37,909</span></div>
-          <div class="row"><span class="sym">2408</span><span class="px">▲ 403 → 410</span><span class="pl red">−31,251</span></div>
-          <div class="note">2026-06-16 模擬交易實測 · 2 勝 3 負 · 兩檔贏家夠大故全日淨賺。模擬結果,非實際績效。</div>
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span><span class="live-dot"></span>盤中工作台 · 2026-06-16 模擬實測</span></div>
+      <div class="body" style="padding:0;gap:0">
+        <img src="assets/img/shot_workspace.png" alt="REMORA 盤中工作台:6770/1802 即時 K 線、進出場標記與量能副圖">
+        <div class="pnl" style="padding:8px 0 2px">
+          <div class="tot" style="padding:10px 14px"><span class="lab">今日已實現損益(模擬)</span><span class="val green">+52,208</span></div>
+          <div class="note">2026-06-16 模擬交易實測 · 2 勝 3 負(兩檔贏家夠大故全日淨賺)· 模擬結果,非實際績效。</div>
         </div>
       </div>
     </div>
@@ -193,7 +189,7 @@
     <p>從設定到自動盤中交易,只要三步。出廠為模擬模式,確認穩定再切實盤。</p>
   </div>
   <div class="steps reveal">
-    <div class="step"><h4>連接券商</h4><p>填入永豐金 Shioaji API(支援正式 + 模擬雙模式),一鍵驗證連線狀態。</p></div>
+    <div class="step"><h4>連接券商</h4><p>填入永豐金 Shioaji 或 玉山 Esun 的 API(Shioaji 支援正式 + 模擬雙模式),一鍵驗證連線狀態。</p></div>
     <div class="step"><h4>回測驗證</h4><p>用內建回測區跑歷史資料,確認策略表現與風控水位,熟悉操作。</p></div>
     <div class="step"><h4>盤中自動</h4><p>09:00 前開啟盤中監控,系統自動選股、進場、停損、尾盤結算,並推播到手機。</p></div>
   </div>
@@ -206,7 +202,7 @@
     <h2>常見問題</h2>
   </div>
   <div class="faq reveal">
-    <details><summary>需要哪家券商?</summary><p>目前以永豐金 Shioaji 為主(支援正式與模擬下單),並相容部分其他券商。需自備券商帳號與 API 權限。</p></details>
+    <details><summary>需要哪家券商?</summary><p>支援永豐金 Shioaji(主要,正式與模擬雙模式)與 玉山 Esun。需自備券商帳號與 API 權限。</p></details>
     <details><summary>會不會直接動到真錢?</summary><p>不會。出廠預設為「模擬模式」+ 安全資金預設,且每次切換正式模式都需手動確認、送單前再驗證一致性。實盤前請充分測試。</p></details>
     <details><summary>績效數字是真的嗎?</summary><p>站上績效為「回測(歷史模擬)」與「模擬交易實測」結果,皆非實際下單績效,並附完整免責。詳見<a href="performance.html" style="color:var(--accent2)">績效頁</a>。過去績效不代表未來。</p></details>
     <details><summary>怎麼更新?</summary><p>內建自動更新:新版發佈後,程式會自動偵測並一鍵更新(免管理員、免解除安裝)。</p></details>
