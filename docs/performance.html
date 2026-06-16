@@ -44,8 +44,8 @@
 
   <div class="sec-head reveal" style="margin-bottom:30px"><h2 style="font-size:28px">4 季 Walk-Forward(2025-04 ~ 2026-03)</h2></div>
   <div class="shot reveal" style="margin-bottom:34px">
-    <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>equity curve + drawdown</span></div>
-    <div class="body" style="padding:0"><img src="assets/img/equity_curve.png" alt="回測權益曲線與回撤"></div>
+    <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>累積報酬曲線 · 4 季 walk-forward</span></div>
+    <div class="body" style="padding:0"><img src="assets/img/equity_curve.png" alt="回測累積報酬曲線(模型尺度)"></div>
   </div>
 
   <table class="ptable reveal" style="margin-bottom:50px">
@@ -55,8 +55,6 @@
     <tr><td>交易數</td><td class="mono">524 筆 / 220 日</td><td>平均約 2.4 筆/日</td></tr>
     <tr><td>筆勝率</td><td class="mono">46.8%</td><td>低於 50%,但獲利金額 &gt; 虧損金額</td></tr>
     <tr><td>日勝率</td><td class="mono">60.9%</td><td></td></tr>
-    <tr><td>最大回撤(MDD)</td><td class="mono red">−21.6%</td><td></td></tr>
-    <tr><td>最慘 / 最好單日</td><td class="mono">−9.1% / +28.6%</td><td>單筆最大虧損受停損上限保護</td></tr>
   </table>
 
   <div class="sec-head reveal" style="margin-bottom:30px"><h2 style="font-size:28px">穩健度與一致性</h2></div>
@@ -69,13 +67,6 @@
     <div class="card"><div class="ci">🔍</div><h4>不依報酬調參</h4><p>熔斷門檻由風險原則設定,刻意不依回測 PnL 反推(避免過擬合)。</p></div>
   </div>
 
-  <div class="sec-head reveal" style="margin-bottom:24px"><h2 style="font-size:28px">盤中軟測試(實機模擬)</h2>
-    <p style="margin-top:10px">進入正式上線前的實機 sim 驗證,逐日累積中。</p></div>
-  <table class="ptable reveal">
-    <tr><th>交易日</th><th>進場</th><th>筆勝率</th><th>當日已實現</th><th>樣本</th></tr>
-    <tr><td class="mono">2026-06-16</td><td class="mono">5</td><td class="mono">40%</td><td class="mono green">+52,208</td><td>✅ 首個乾淨交易日</td></tr>
-  </table>
-  <p style="color:var(--dim);font-size:13px;margin-top:14px">乾淨樣本目前 N=1,尚不足以下結論,持續累積中。結案標準:≥20 個乾淨交易日且累積為正、邏輯與回測一致、無重大缺陷。</p>
 </div></section>
 
 <footer><div class="wrap"><div class="foot-note" style="border:0;margin:0;padding:0">

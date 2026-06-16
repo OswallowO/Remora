@@ -11,7 +11,7 @@
   if(t && links){
     t.addEventListener('click', function(){
       links.style.display = (links.style.display==='flex') ? 'none' : 'flex';
-      links.style.cssText += ';flex-direction:column;position:absolute;top:62px;right:24px;background:var(--panel);padding:16px 22px;border:1px solid var(--border2);border-radius:10px;gap:14px';
+      links.style.cssText += ';flex-direction:column;position:absolute;top:74px;right:24px;background:var(--panel);padding:16px 22px;border:1px solid var(--border2);border-radius:10px;gap:14px';
     });
     links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){
       if(window.innerWidth<=860){ links.style.display='none'; }
