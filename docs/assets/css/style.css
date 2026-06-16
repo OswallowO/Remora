@@ -186,6 +186,12 @@ footer .fcol a:hover{color:var(--accent2)}
 .faq details[open] summary::after{content:"–"}
 .faq p{color:var(--dim);font-size:14.5px;padding:0 0 16px;line-height:1.7}
 
+/* ── Live indicator ── */
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);
+  margin-right:6px;box-shadow:0 0 8px var(--green);animation:pulse 1.4s ease-in-out infinite;vertical-align:middle}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.mockchart span{transition:height .45s ease,background .45s ease}
+
 /* ── Reduced motion ── */
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}

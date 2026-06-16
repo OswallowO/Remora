@@ -41,4 +41,21 @@
         if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); } }); });
     o.observe(el);
   });
+
+  // Live-ticking chart — simulate a real-time terminal feel (炫泡), no video needed.
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+    document.querySelectorAll('.mockchart[data-live]').forEach(function(mc){
+      function tick(){
+        if(document.hidden) return;
+        var bars=mc.querySelectorAll('span'); if(!bars.length) return;
+        var hs=[].map.call(bars, function(b){ return parseFloat(b.style.height)||50; });
+        hs.shift();
+        var last=hs[hs.length-1]||60;
+        hs.push(Math.round(Math.max(22, Math.min(96, last + (Math.random()*24-12)))));
+        bars.forEach(function(b,i){ b.style.height=hs[i]+'%';
+          b.style.background=(i>0 && hs[i]<hs[i-1])?'var(--red)':'var(--green)'; });
+      }
+      setInterval(tick, 950);
+    });
+  }
 })();
