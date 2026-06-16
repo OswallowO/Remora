@@ -65,21 +65,47 @@
     });
   }
 
-  // ── 3. 今日交易瀑布圖(動畫長條)──
-  var wf = document.getElementById('waterfall');
-  if (wf) {
-    var trades = [{s:'6770',v:102688},{s:'1802',v:57643},{s:'2344',v:-38963},{s:'3037',v:-37909},{s:'2408',v:-31251}];
-    var maxabs = Math.max.apply(null, trades.map(function(t){ return Math.abs(t.v); }));
-    wf.innerHTML = trades.map(function(t){
-      var w = (Math.abs(t.v) / maxabs * 100).toFixed(1), pos = t.v >= 0;
-      return '<div class="wfrow"><span class="wfs">' + t.s + '</span><div class="wfbar"><span class="' +
-        (pos ? 'wfg' : 'wfr') + '" data-w="' + w + '"></span></div><span class="wfv ' + (pos ? 'green' : 'red') +
-        '">' + (pos ? '+' : '') + t.v.toLocaleString() + '</span></div>';
-    }).join('');
-    var io2 = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){
-      wf.querySelectorAll('[data-w]').forEach(function(b, i){ setTimeout(function(){ b.style.width = b.getAttribute('data-w') + '%'; }, i * 130); });
-      io2.disconnect();
-    }}); }, { threshold: .3 });
-    io2.observe(wf);
+  // ── 3. 一年回測回放(變速播放,像 client 變速回放)──
+  var rcEl = document.getElementById('replayChart');
+  if (rcEl && TV) {
+    fetch('assets/data/replay_year.json').then(function(r){ return r.json(); }).then(function(d){
+      var pts = d.points;
+      var chart = TV.createChart(rcEl, {
+        width: rcEl.clientWidth, height: rcEl.clientHeight,
+        layout: { background: { type: 'solid', color: 'transparent' }, textColor: '#8b97a6', fontFamily: 'inherit' },
+        grid: { vertLines: { color: 'rgba(42,53,67,.4)' }, horzLines: { color: 'rgba(42,53,67,.4)' } },
+        rightPriceScale: { borderColor: '#2a3543' }, timeScale: { borderColor: '#2a3543' }, crosshair: { mode: 0 },
+      });
+      var area = chart.addAreaSeries({ lineColor: '#16c784', topColor: 'rgba(22,199,132,.28)', bottomColor: 'rgba(22,199,132,0)', lineWidth: 2 });
+      var base = Date.UTC(2025, 3, 1) / 1000;
+      var full = pts.map(function(p, i){ return { time: base + i * 86400, value: p.c }; });
+      var dateEl = document.getElementById('rpDate'), pnlEl = document.getElementById('rpPnl'), dayEl = document.getElementById('rpDay');
+      var idx = 0, timer = null, speed = 1;
+      function render(){
+        area.setData(full.slice(0, Math.max(1, idx)));
+        var p = pts[Math.min(idx, pts.length) - 1] || pts[0];
+        var mm = parseInt(p.d.slice(0, 2), 10), yr = mm >= 4 ? 2025 : 2026;
+        dateEl.textContent = yr + '/' + p.d;
+        pnlEl.textContent = (p.c >= 0 ? '+' : '') + p.c.toLocaleString();
+        pnlEl.className = 'rv mono ' + (p.c >= 0 ? 'green' : 'red');
+        dayEl.textContent = Math.min(idx, pts.length) + ' / ' + pts.length;
+        chart.timeScale().fitContent();
+      }
+      function stop(){ if (timer){ clearInterval(timer); timer = null; } document.getElementById('rpPlay').textContent = '▶ 播放'; }
+      function play(){
+        if (timer){ stop(); return; }
+        if (idx >= pts.length) idx = 0;
+        document.getElementById('rpPlay').textContent = '⏸ 暫停';
+        timer = setInterval(function(){ idx += speed; if (idx >= pts.length){ idx = pts.length; render(); stop(); return; } render(); }, 60);
+      }
+      document.getElementById('rpPlay').addEventListener('click', play);
+      document.getElementById('rpReset').addEventListener('click', function(){ stop(); idx = 0; render(); });
+      document.querySelectorAll('.replay-ctrl [data-spd]').forEach(function(b){ b.addEventListener('click', function(){
+        document.querySelectorAll('.replay-ctrl [data-spd]').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on'); speed = parseInt(b.getAttribute('data-spd'), 10);
+      }); });
+      idx = 1; render();
+      if (window.ResizeObserver) new ResizeObserver(function(){ chart.applyOptions({ width: rcEl.clientWidth, height: rcEl.clientHeight }); }).observe(rcEl);
+    });
   }
 })();

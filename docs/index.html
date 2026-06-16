@@ -164,6 +164,32 @@
   <div class="disclaimer reveal">⚠️ 上述為<b>回測(歷史模擬)結果,非實際交易績效</b>。「+548%」為各筆報酬率加總(非複利成長);回測採模型尺度、未含真實滑點與部分成交。<b>過去績效不代表未來表現,投資有風險。</b></div>
 </div></section>
 
+<!-- Backtest replay -->
+<section id="replay"><div class="wrap">
+  <div class="sec-head reveal">
+    <div class="kick">BACKTEST REPLAY · 互動</div>
+    <h2>一年回測回放</h2>
+    <p>按播放,像客戶端的變速回放一樣,看這一年的權益曲線一天天長出來。每檔 200 萬 · 模型尺度。</p>
+  </div>
+  <div class="shot reveal">
+    <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>一年回測回放 · 2025-04 → 2026-03</span></div>
+    <div class="body" style="padding:14px">
+      <div class="replay-stats">
+        <div><span class="rl">日期</span><span id="rpDate" class="rv mono">—</span></div>
+        <div><span class="rl">累積損益(元)</span><span id="rpPnl" class="rv mono green">+0</span></div>
+        <div><span class="rl">交易日</span><span id="rpDay" class="rv mono">0 / 220</span></div>
+      </div>
+      <div id="replayChart"></div>
+      <div class="replay-ctrl">
+        <button id="rpPlay">▶ 播放</button>
+        <button data-spd="1" class="on">1×</button><button data-spd="2">2×</button><button data-spd="4">4×</button>
+        <button id="rpReset">↺ 重設</button>
+      </div>
+    </div>
+  </div>
+  <p class="disclaimer reveal">⚠️ 回測(歷史模擬)· 每檔 200 萬 · 模型尺度(未套每日 5 檔上限與滑點)· 非實際交易績效,過去不代表未來。</p>
+</div></section>
+
 <!-- Server -->
 <section id="server" class="alt"><div class="wrap">
   <div class="sec-head reveal">
