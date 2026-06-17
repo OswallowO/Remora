@@ -52,8 +52,8 @@
       var area = d + ' L' + pts[pts.length - 1][0].toFixed(1) + ',' + y0.toFixed(1) + ' L' + pts[0][0].toFixed(1) + ',' + y0.toFixed(1) + ' Z';
       eqEl.innerHTML =
         '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" style="width:100%;height:240px;display:block">' +
-        '<path class="eqarea" d="' + area + '" fill="rgba(22,199,132,.10)" stroke="none" style="opacity:0"/>' +
-        '<path class="eqline" d="' + d + '" fill="none" stroke="#16c784" stroke-width="2" stroke-linejoin="round"/></svg>';
+        '<path class="eqarea" d="' + area + '" fill="rgba(234,57,67,.10)" stroke="none" style="opacity:0"/>' +
+        '<path class="eqline" d="' + d + '" fill="none" stroke="#ea3943" stroke-width="2" stroke-linejoin="round"/></svg>';
       var line = eqEl.querySelector('.eqline'), areaP = eqEl.querySelector('.eqarea');
       var len = line.getTotalLength();
       line.style.strokeDasharray = len; line.style.strokeDashoffset = len;
@@ -76,19 +76,26 @@
         grid: { vertLines: { color: 'rgba(42,53,67,.4)' }, horzLines: { color: 'rgba(42,53,67,.4)' } },
         rightPriceScale: { borderColor: '#2a3543' }, timeScale: { borderColor: '#2a3543' }, crosshair: { mode: 0 },
       });
-      var area = chart.addAreaSeries({ lineColor: '#16c784', topColor: 'rgba(22,199,132,.28)', bottomColor: 'rgba(22,199,132,0)', lineWidth: 2 });
+      var area = chart.addAreaSeries({ lineColor: '#ea3943', topColor: 'rgba(234,57,67,.28)', bottomColor: 'rgba(234,57,67,0)', lineWidth: 2 });
       var base = Date.UTC(2025, 3, 1) / 1000;
-      var full = pts.map(function(p, i){ return { time: base + i * 86400, value: p.c }; });
+      // 從第 0 天(損益 0)起播:加一個 day0 基準點(value 0),真實點往後移一天
+      var full = [{ time: base, value: 0 }].concat(pts.map(function(p, i){ return { time: base + (i + 1) * 86400, value: p.c }; }));
       var dateEl = document.getElementById('rpDate'), pnlEl = document.getElementById('rpPnl'), dayEl = document.getElementById('rpDay');
-      var idx = 0, timer = null, speed = 1;
+      var idx = 0, timer = null, speed = 1;   // idx=0 → 第 0 天,損益 0
       function render(){
-        area.setData(full.slice(0, Math.max(1, idx)));
-        var p = pts[Math.min(idx, pts.length) - 1] || pts[0];
-        var mm = parseInt(p.d.slice(0, 2), 10), yr = mm >= 4 ? 2025 : 2026;
-        dateEl.textContent = yr + '/' + p.d;
-        pnlEl.textContent = (p.c >= 0 ? '+' : '') + p.c.toLocaleString();
-        pnlEl.className = 'rv mono ' + (p.c >= 0 ? 'green' : 'red');
-        dayEl.textContent = Math.min(idx, pts.length) + ' / ' + pts.length;
+        area.setData(full.slice(0, idx + 1));
+        if (idx <= 0){
+          dateEl.textContent = '開盤前';
+          pnlEl.textContent = '+0'; pnlEl.className = 'rv mono'; pnlEl.style.color = 'var(--dim)';
+          dayEl.textContent = '0 / ' + pts.length;
+        } else {
+          var p = pts[Math.min(idx, pts.length) - 1];
+          var mm = parseInt(p.d.slice(0, 2), 10), yr = mm >= 4 ? 2025 : 2026;
+          dateEl.textContent = yr + '/' + p.d;
+          pnlEl.textContent = (p.c >= 0 ? '+' : '') + p.c.toLocaleString();
+          pnlEl.style.color = ''; pnlEl.className = 'rv mono ' + (p.c >= 0 ? 'red' : 'green');   // 台股:正報酬紅
+          dayEl.textContent = Math.min(idx, pts.length) + ' / ' + pts.length;
+        }
         chart.timeScale().fitContent();
       }
       function stop(){ if (timer){ clearInterval(timer); timer = null; } document.getElementById('rpPlay').textContent = '▶ 播放'; }
@@ -104,7 +111,7 @@
         document.querySelectorAll('.replay-ctrl [data-spd]').forEach(function(x){ x.classList.remove('on'); });
         b.classList.add('on'); speed = parseInt(b.getAttribute('data-spd'), 10);
       }); });
-      idx = 1; render();
+      idx = 0; render();   // 初始 = 第 0 天,損益 0(尚未播放)
       if (window.ResizeObserver) new ResizeObserver(function(){ chart.applyOptions({ width: rcEl.clientWidth, height: rcEl.clientHeight }); }).observe(rcEl);
     });
   }

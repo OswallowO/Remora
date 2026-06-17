@@ -95,7 +95,7 @@
     <div class="shot">
       <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>walk-forward · OOS</span></div>
       <div class="body"><div class="mockchart" data-seq="20,28,24,36,40,52,48,60,66,58,72,80,76,88,92"></div>
-        <div class="mrow" style="border:0"><span class="dim">4 季累積(模型尺度)</span><span class="green mono">+548%</span></div>
+        <div class="mrow" style="border:0"><span class="dim">4 季累積(模型尺度)</span><span class="red mono">+555%</span></div>
       </div>
     </div>
   </div>
@@ -125,6 +125,12 @@
         <div class="chart-toggle"><button data-sym="6770" class="on">6770 力積電</button><button data-sym="1802">1802 台玻</button></div>
         <div id="liveKchart"></div>
         <div class="chart-hint">即時 tick K 線 + 進出場標記 + 量能副圖 · 可拖曳 / 滾輪縮放</div>
+        <div class="pnl" style="border-top:1px solid var(--border);padding:10px 14px 6px">
+          <div class="tot"><span class="lab">今日已實現損益</span><span class="val red">+160,331</span></div>
+          <div class="row"><span class="sym">6770</span><span class="px">空 595.0 → 回補 532.4</span><span class="pl red">+102,688</span></div>
+          <div class="row"><span class="sym">1802</span><span class="px">空 48.6 → 回補 46.2</span><span class="pl red">+57,643</span></div>
+          <div class="note">示意 · 台股漲跌色(賺=紅 / 賠=綠)· 每檔約 200 萬</div>
+        </div>
       </div>
     </div>
   </div>
@@ -149,19 +155,19 @@
       <p>我們把「回測偏樂觀」的部分也誠實揭露(回測未套每日 5 檔上限、未含真實滑點),讓你看到的是可被獨立驗證的數字。</p>
       <ul>
         <li>一年 10 萬/檔回測:+356,977 元 / 875 筆</li>
-        <li>4 季 walk-forward 累積 +548%(模型尺度)</li>
+        <li>4 季 walk-forward 累積 +555%(模型尺度 · chip-only)</li>
         <li>盤中引擎 = 回測 = 模型,逐筆 100% 等價</li>
       </ul>
       <a class="btn btn-ghost" href="performance.html" style="margin-top:18px">查看完整績效與免責 →</a>
     </div>
     <div class="shot">
-      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>equity curve · 4Q walk-forward · +548%</span></div>
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>equity curve · 4Q walk-forward · +555%</span></div>
       <div class="body" style="padding:14px 14px 6px"><div id="equityChart"></div>
         <div class="chart-hint" style="padding:6px 0 0">4 季 walk-forward 累積報酬(模型尺度)· 捲動到此自動描繪</div>
       </div>
     </div>
   </div>
-  <div class="disclaimer reveal">⚠️ 上述為<b>回測(歷史模擬)結果,非實際交易績效</b>。「+548%」為各筆報酬率加總(非複利成長);回測採模型尺度、未含真實滑點與部分成交。<b>過去績效不代表未來表現,投資有風險。</b></div>
+  <div class="disclaimer reveal">⚠️ 上述為<b>回測(歷史模擬)結果,非實際交易績效</b>。「+555%」為各筆報酬率加總(非複利成長);回測採模型尺度、未含真實滑點與部分成交。<b>過去績效不代表未來表現,投資有風險。</b></div>
 </div></section>
 
 <!-- Backtest replay -->
@@ -176,7 +182,7 @@
     <div class="body" style="padding:14px">
       <div class="replay-stats">
         <div><span class="rl">日期</span><span id="rpDate" class="rv mono">—</span></div>
-        <div><span class="rl">累積損益(元)</span><span id="rpPnl" class="rv mono green">+0</span></div>
+        <div><span class="rl">累積損益(元)</span><span id="rpPnl" class="rv mono" style="color:var(--dim)">+0</span></div>
         <div><span class="rl">交易日</span><span id="rpDay" class="rv mono">0 / 220</span></div>
       </div>
       <div id="replayChart"></div>
