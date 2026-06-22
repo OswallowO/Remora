@@ -4,7 +4,7 @@
 
 **台股當沖程式化交易平台 — 機器學習決策引擎 · 即時盤中監控 · 嚴謹回測與風控**
 
-[![version](https://img.shields.io/badge/version-2.1.0-1f6feb)](#) [![platform](https://img.shields.io/badge/platform-Windows-555)](#) [![status](https://img.shields.io/badge/status-active-2ea043)](#)
+[![version](https://img.shields.io/badge/version-2.1.1-1f6feb)](#) [![platform](https://img.shields.io/badge/platform-Windows-555)](#) [![status](https://img.shields.io/badge/status-active-2ea043)](#)
 
 🌐 **產品介紹網站 → https://oswallowo.github.io/remora-data/** （請替換成你實際的 Pages 網址）
 
@@ -36,7 +36,15 @@ REMORA 是一套針對**台股當日沖銷**設計的桌面交易平台,以**機
 
 ## 版本
 
-目前穩定版 **v2.1.0**(用戶端)/ 伺服器端 **v1.1.0**。更新內容見 [產品網站更新日誌](https://oswallowo.github.io/remora-data/changelog.html) 或 Releases。
+目前版本 **v2.1.1**(用戶端)/ 伺服器端 **v1.1.0**。
+
+### v2.1.1 更新重點(相對 v2.1.0)
+- **決策引擎升級**:新一代多路徑機器學習引擎,涵蓋更全面的市場掃描與更精細的進場濾網。
+- **回測效能大幅提升**:整年回測速度提升約一個數量級,記憶體占用顯著降低。
+- **即時看盤體驗**:即時 K 線當前跳動棒 + 成交量副圖;事後覆盤線圖修復。
+- **交易穩定性**:統一停損架構、回測費稅開關、客戶端自動更新對齊。
+
+> 詳細逐版變更見 [Releases](https://github.com/OswallowO/Remora/releases) 或產品網站更新日誌。
 
 ## 授權與免責
 
