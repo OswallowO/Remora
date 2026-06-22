@@ -134,5 +134,8 @@
   © 2026 REMORA · Private. 過去績效不代表未來表現,交易有風險。
 </div></div></footer>
 <script src="assets/js/main.js"></script>
+<!-- 瀏覽計數:counterapi.dev(免帳號;每次載入 +1)-->
+<div id="vc-badge" style="position:fixed;right:12px;bottom:12px;font:12px/1 system-ui;background:rgba(20,22,28,.82);color:#cfd6e4;padding:6px 10px;border:1px solid #2a2f3a;border-radius:8px;z-index:99">瀏覽 <b id="vc-n">…</b></div>
+<script>fetch('https://api.counterapi.dev/v1/remora_site/views/up').then(function(r){return r.json()}).then(function(d){document.getElementById('vc-n').textContent=d.count}).catch(function(){document.getElementById('vc-badge').style.display='none'})</script>
 </body>
 </html>
