@@ -26,9 +26,20 @@
     });
   }
 
-  fetch('https://api.github.com/repos/OswallowO/Remora/releases/latest')      // 自動版本號
+  fetch('https://api.github.com/repos/OswallowO/Remora/releases/latest')      // 自動版本號 + 直接下載連結
     .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(d){ if(d && d.tag_name){
-      document.querySelectorAll('[data-gh-version]').forEach(function(el){ el.textContent = d.tag_name; }); } })
+    .then(function(d){ if(!d) return;
+      if(d.tag_name) document.querySelectorAll('[data-gh-version]').forEach(function(el){ el.textContent = d.tag_name; });
+      // 找安裝檔(名稱含 setup 的 .exe;否則任一 .exe)→ 下載鈕直接指向資產,不跳 repo 頁
+      var as = d.assets || [];
+      var inst = as.filter(function(a){ return /setup/i.test(a.name) && /\.exe$/i.test(a.name); })[0]
+              || as.filter(function(a){ return /\.exe$/i.test(a.name); })[0];
+      if(inst && inst.browser_download_url){
+        document.querySelectorAll('[data-gh-download]').forEach(function(el){
+          el.setAttribute('href', inst.browser_download_url);   // GitHub 資產以 attachment 提供 → 直接下載
+          el.removeAttribute('target');                          // 同分頁下載,不開新分頁
+        });
+      }
+    })
     .catch(function(){});
 })();
