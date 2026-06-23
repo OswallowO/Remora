@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>回測績效 — REMORA</title>
-<meta name="description" content="REMORA OPT8c 引擎回測績效與完整免責聲明。">
+<meta name="description" content="REMORA OPT8d 引擎回測績效與完整免責聲明。">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <meta property="og:title" content="REMORA 回測績效與誠實免責">
 <meta property="og:description" content="4 季 walk-forward、權益曲線、風控指標,全部附完整免責。回測非實績,過去不代表未來。">
@@ -50,19 +50,46 @@
 
   <table class="ptable reveal" style="margin-bottom:50px">
     <tr><th>指標</th><th>數值</th><th>備註</th></tr>
-    <tr><td>期間</td><td class="mono">2025-04 ~ 2026-03</td><td>4 季 walk-forward,含 2026Q1 樣本外</td></tr>
-    <tr><td>累積報酬(模型尺度)</td><td class="mono red">+555.3%</td><td>各筆報酬率加總,非複利;chip-only 閘門</td></tr>
-    <tr><td>交易數</td><td class="mono">511 筆 / 220 日</td><td>平均約 2.3 筆/日(chip-only)</td></tr>
-    <tr><td>筆勝率</td><td class="mono">47.4%</td><td>低於 50%,但獲利金額 &gt; 虧損金額</td></tr>
-    <tr><td>日勝率</td><td class="mono">61.4%</td><td></td></tr>
+    <tr><td>期間</td><td class="mono">2025-04 ~ 2026-03</td><td>4 季 walk-forward(Q2 / Q3 / Q4 / 26Q1 全正)</td></tr>
+    <tr><td>累積報酬(模型尺度)</td><td class="mono red">+1,409.9%</td><td>各筆報酬率加總,非複利;全市場 hybrid</td></tr>
+    <tr><td>每筆平均報酬</td><td class="mono red">+1.196%</td><td>獲利因子(PF)2.77</td></tr>
+    <tr><td>交易數</td><td class="mono">1,179 筆 / 236 日</td><td>平均約 5.0 筆/日</td></tr>
+    <tr><td>筆勝率</td><td class="mono">58.1%</td><td>獲利金額 &gt; 虧損金額</td></tr>
+    <tr><td>日勝率</td><td class="mono">74.6%</td><td></td></tr>
+    <tr><td>最大回撤(MDD)</td><td class="mono">−12.2%</td><td>累積 % 曲線峰谷</td></tr>
+    <tr><td>報酬-回撤比</td><td class="mono red">116</td><td>每單位回撤所換得之報酬</td></tr>
   </table>
+
+  <div class="sec-head reveal" style="margin-bottom:30px"><h2 style="font-size:28px">樣本外實證(OOS · 2026 Q2)</h2>
+    <p style="color:var(--dim);max-width:680px;margin-top:8px">完全未參與任何開發、驗證或調參之 54 個交易日,以定版凍結之完整策略<b>單次跑過</b>作為最終仲裁,並對日報酬序列施多重檢定校正。</p></div>
+  <table class="ptable reveal" style="margin-bottom:24px">
+    <tr><th>指標</th><th>數值</th><th>備註</th></tr>
+    <tr><td>期間</td><td class="mono">2026 Q2(54 交易日)</td><td>touch-once,僅碰一次</td></tr>
+    <tr><td>累積報酬(模型尺度)</td><td class="mono red">+288.5%</td><td>逐月 +132% / +116% / +40%,全正</td></tr>
+    <tr><td>交易數</td><td class="mono">270 筆</td><td>逐套 套牢 +108% / 漲停 +170% / 拉高 +10%</td></tr>
+    <tr><td>筆勝率 / 日勝率</td><td class="mono">52.2% / 72.2%</td><td></td></tr>
+    <tr><td>最大回撤 / 報酬-回撤比</td><td class="mono">−14.5% / 19.9</td><td></td></tr>
+    <tr><td>Deflated Sharpe Ratio</td><td class="mono red">0.9907</td><td>&gt; 0.95,校正多組態試行之選擇偏差</td></tr>
+    <tr><td>自助法 p(日均&gt;0)</td><td class="mono red">0.0002</td><td>平穩區塊自助法,於 0.001 水準顯著</td></tr>
+  </table>
+  <p class="disclaimer reveal" style="margin-bottom:50px">⚠️ 樣本外為「僅碰一次」之單次實證;模型尺度為毛報酬率加總,未含滑點與部分成交。過去績效不代表未來表現。</p>
+
+  <div class="sec-head reveal" style="margin-bottom:30px"><h2 style="font-size:28px">對標被動市場(TAIEX 含息報酬指數)</h2>
+    <p style="color:var(--dim);max-width:680px;margin-top:8px">本策略為日內、以放空為主、無隔夜部位;同期市場皆為<b>上漲</b>,策略仍取得遠超市場之報酬 → 超額來自選股與時機之 alpha,而非市場 beta(方向獨立 / market-neutral)。對標市場時以可實現之<b>資金尺度</b>為主。</p></div>
+  <table class="ptable reveal" style="margin-bottom:24px">
+    <tr><th>期間</th><th>本策略</th><th>TAIEX 報酬指數</th></tr>
+    <tr><td>樣本內<br><span class="dim" style="font-weight:400">2025-04 ~ 2026-03</span></td><td class="mono red">資金尺度 +200%<br><span class="dim" style="font-weight:400">(模型尺度 +1,409.9%)· MDD 12.2%</span></td><td class="mono">+53.4%<br><span class="dim" style="font-weight:400">MDD 18.3%</span></td></tr>
+    <tr><td>樣本外<br><span class="dim" style="font-weight:400">2026 Q2</span></td><td class="mono red">模型尺度 +288.5%<br><span class="dim" style="font-weight:400">MDD 14.5%</span></td><td class="mono">+44.3%<br><span class="dim" style="font-weight:400">MDD 7.0%</span></td></tr>
+  </table>
+  <p class="disclaimer reveal" style="margin-bottom:50px">⚠️ 資金尺度(+200%)為含每日進場上限 5 與單檔曝險上限之可實現資金成長近似;模型尺度反映決策之純粹品質、非資金複利成長。TAIEX 取含息報酬指數以避免 ETF 除權息與分割造成之價格失真。</p>
 
   <div class="sec-head reveal" style="margin-bottom:30px"><h2 style="font-size:28px">穩健度與一致性</h2></div>
   <div class="cards reveal" style="margin-bottom:40px">
-    <div class="card"><div class="ci">🗓️</div><h4>16 / 19 季正報酬</h4><p>2022–2026 隨機抽樣 point-in-time 回測,跨越多種市況。</p></div>
-    <div class="card"><div class="ci">🧪</div><h4>真實樣本外</h4><p>2022 大空頭(模型訓練前)表現最強 → 市況依賴,非過度配適。</p></div>
+    <div class="card"><div class="ci">🗓️</div><h4>四季逐季全正</h4><p>Q2 +303% / Q3 +377% / Q4 +351% / 26Q1 +378%,無單季拖累。</p></div>
+    <div class="card"><div class="ci">🧪</div><h4>真實樣本外(OOS)</h4><p>2026 Q2 完全未參與開發,單次跑過 +288.5%、逐月全正;Deflated Sharpe 0.99、自助法 p=0.0002。</p></div>
+    <div class="card"><div class="ci">🔗</div><h4>三路徑低相關</h4><p>三套訊號日報酬兩兩相關 −0.10~+0.08,分散風險,組合回撤低於任一單套。</p></div>
     <div class="card"><div class="ci">🎯</div><h4>逐筆 100% 等價</h4><p>盤中引擎 = 回測 = 訓練模型,進出場價誤差 0.0000。</p></div>
-    <div class="card"><div class="ci">💵</div><h4>一年回測(模型尺度)</h4><p>每檔 200 萬 ≈ +1,111 萬元(=+555%,與回放/標題同源);盤中=回測=模型逐筆 100% 等價。</p></div>
+    <div class="card"><div class="ci">💵</div><h4>一年回測(模型尺度)</h4><p>每檔 200 萬 ≈ +2,820 萬元(=+1,409.9%,與回放/標題同源)。</p></div>
     <div class="card"><div class="ci">🛡️</div><h4>風控基準</h4><p>每日進場 5 / 連續停損熔斷 4 / 同族 1,由真實交易分布反推。</p></div>
     <div class="card"><div class="ci">🔍</div><h4>不依報酬調參</h4><p>熔斷門檻由風險原則設定,刻意不依回測 PnL 反推(避免過擬合)。</p></div>
   </div>
@@ -73,7 +100,8 @@
   © 2026 REMORA · Private. 本頁所載績效為回測(歷史模擬)結果,非實際交易績效;過去績效不代表未來表現。交易有風險,本平台不構成投資建議。
 </div></div></footer>
 <script src="assets/js/main.js"></script>
-<!-- 瀏覽計數:counterapi.dev(免帳號;每次載入 +1)-->
+<script src="assets/js/anim.js"></script>
+<!-- 瀏覽計數:counterapi.dev(免帳號;每次載入 +1;要換自架計數器再改這段)-->
 <div id="vc-badge" style="position:fixed;right:12px;bottom:12px;font:12px/1 system-ui;background:rgba(20,22,28,.82);color:#cfd6e4;padding:6px 10px;border:1px solid #2a2f3a;border-radius:8px;z-index:99">瀏覽 <b id="vc-n">…</b></div>
 <script>fetch('https://api.counterapi.dev/v1/remora_site/views/up').then(function(r){return r.json()}).then(function(d){document.getElementById('vc-n').textContent=d.count}).catch(function(){document.getElementById('vc-badge').style.display='none'})</script>
 </body>

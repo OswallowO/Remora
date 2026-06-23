@@ -4,17 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>REMORA — 台股當沖機器學習執行終端</title>
-<meta name="description" content="REMORA 是台股當沖的機器學習自動交易平台:OPT8c 三套 ML 引擎、自動選股、即時 K 線、三區工作台、Discord/Web 遠端監控。">
+<meta name="description" content="REMORA 是台股當沖的機器學習自動交易平台:OPT8d 三套 ML 引擎、自動選股、即時 K 線、三區工作台、Discord/Web 遠端監控。">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="REMORA — 台股當沖機器學習執行終端">
-<meta property="og:description" content="OPT8c 三套 ML 引擎、自動選股、即時 K 線、三區工作台、Discord/Web 遠端監控。盤中=回測=模型逐筆 100% 等價。">
+<meta property="og:description" content="OPT8d 三套 ML 引擎、自動選股、即時 K 線、三區工作台、Discord/Web 遠端監控。盤中=回測=模型逐筆 100% 等價。">
 <meta property="og:image" content="https://oswallowo.github.io/Remora/assets/img/og_image.png">
 <meta property="og:url" content="https://oswallowo.github.io/Remora/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="REMORA — 台股當沖機器學習執行終端">
-<meta name="twitter:description" content="OPT8c 三套 ML 引擎、自動選股、即時 K 線、遠端監控。">
+<meta name="twitter:description" content="OPT8d 三套 ML 引擎、自動選股、即時 K 線、遠端監控。">
 <meta name="twitter:image" content="https://oswallowo.github.io/Remora/assets/img/og_image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Mono&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -37,26 +39,51 @@
 
 <!-- Hero -->
 <header class="hero"><div class="wrap">
-  <span class="tag">v2.1.0 · client ⇄ server v1.1.0</span>
-  <h1>台股當沖的<br><span class="grad">機器學習執行終端</span></h1>
-  <p class="lead">OPT8c 三套機器學習引擎自動選股與決策、即時 tick K 線、專業券商級三區工作台,並以 Discord 與 Web 儀表板遠端監控。盤中、回測、訓練模型三者<b>逐筆 100% 等價</b>。</p>
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <span class="tag"><span data-gh-version>v2.1.0</span> · client ⇄ server v1.1.0</span>
+  <h1><span class="tline t1">台股當沖的</span><span class="tline t2 grad">機器學習執行終端</span></h1>
+  <p class="lead">OPT8d 三套機器學習引擎自動選股與決策、即時 tick K 線、專業券商級三區工作台,並以 Discord 與 Web 儀表板遠端監控。盤中、回測、訓練模型三者<b>逐筆 100% 等價</b>。</p>
   <div class="hero-btns">
     <a class="btn btn-primary" href="#download">↓ 下載 REMORA</a>
     <a class="btn btn-ghost" href="performance.html">查看回測績效</a>
   </div>
 
+  <div class="hero-panel reveal">
+    <div class="hp-head">
+      <span class="hp-live"><span class="hp-dot"></span>盤中監控 · 即時(示意)</span>
+      <span class="hp-pnl">回測權益曲線 <span class="hp-pct">4 季 +1,410%</span></span>
+    </div>
+    <div class="hp-body">
+      <svg class="eqcurve" viewBox="0 0 560 160" preserveAspectRatio="none" aria-label="回測權益曲線示意,整體向上">
+        <defs><linearGradient id="eqfill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ea3943" stop-opacity=".22"/>
+          <stop offset="1" stop-color="#ea3943" stop-opacity="0"/></linearGradient></defs>
+        <polygon points="0,146 56,134 112,140 168,108 224,118 280,80 336,92 392,52 448,62 504,28 560,18 560,160 0,160" fill="url(#eqfill)"/>
+        <polyline points="0,146 56,134 112,140 168,108 224,118 280,80 336,92 392,52 448,62 504,28 560,18" fill="none" stroke="#ea3943" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="556" cy="19" r="4" fill="#ea3943"/><circle class="eq-ping" cx="556" cy="19" r="4" fill="none" stroke="#ea3943" stroke-width="1.5"/>
+      </svg>
+      <div class="poslist">
+        <div class="plbl">今日進場 · 放空(示意)</div>
+        <div class="pos"><span>2337 旺宏</span><span class="up">+6.1%</span></div>
+        <div class="pos"><span>3034 聯詠</span><span class="up">+6.0%</span></div>
+        <div class="pos"><span>8358 金居</span><span class="up">+4.8%</span></div>
+      </div>
+    </div>
+  </div>
+
   <div class="stats reveal">
     <div class="cell"><div class="num mono" data-to="3" data-pre="" data-suf=" 套">3 套</div><div class="lbl">並行 ML 進場引擎</div></div>
-    <div class="cell"><div class="num mono" data-to="16" data-pre="" data-suf="/19">16/19</div><div class="lbl">季正報酬(2022–2026 回測)</div></div>
+    <div class="cell"><div class="num mono" data-to="116" data-pre="" data-suf="">116</div><div class="lbl">樣本內報酬-回撤比(MDD 12.2%)</div></div>
     <div class="cell"><div class="num mono" data-to="100" data-pre="" data-suf="%">100%</div><div class="lbl">盤中=回測=模型 等價</div></div>
     <div class="cell"><div class="num mono" data-to="0" data-pre="" data-suf=" 行">0 行</div><div class="lbl">人工挑股(全自動 stocklist)</div></div>
   </div>
 </div></header>
 
 <!-- Engine -->
-<section id="engine"><div class="wrap">
+<section id="engine" class="reveal"><div class="wrap">
   <div class="sec-head reveal">
-    <div class="kick">OPT8C ENGINE</div>
+    <div class="kick">OPT8D ENGINE</div>
     <h2>三套機器學習引擎,並行決策</h2>
     <p>每分鐘對當日候選股以三套模型並行評分,通過多道前置閘門後,由分數最高且過門檻者進場。出場採依動能調整的動態停損。</p>
   </div>
@@ -72,7 +99,7 @@
       </ul>
     </div>
     <div class="shot">
-      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span><span class="live-dot"></span>OPT8c · ML radar · 示意</span></div>
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span><span class="live-dot"></span>OPT8d · ML radar · 示意</span></div>
       <div class="body">
         <div class="mrow"><span>籌碼差</span><span class="tag-pill" style="background:rgba(240,185,11,.15);color:var(--gold)">score 0.81 ▲</span></div>
         <div class="mrow"><span>漲停反轉</span><span class="tag-pill" style="background:rgba(22,199,132,.15);color:var(--green)">score 0.64</span></div>
@@ -85,24 +112,24 @@
     <div class="ftext">
       <div class="ficon">VALIDATION · 防過擬合</div>
       <h3>跨年樣本外 + 全市況驗證</h3>
-      <p>模型只用過去資料訓練,對「沒看過的」未來市況仍正報酬;2022–2026 隨機抽樣回測 19 季中 16 季為正,證明是市況依賴而非過度配適。</p>
+      <p>模型只用過去資料訓練,對「沒看過的」未來市況仍正報酬;2026 Q2(完全未參與任何開發之樣本外)單次跑過仍 +288.5%、逐月全正,經多重檢定校正後依然顯著,證明邊際為真實訊號而非過度配適。</p>
       <ul>
-        <li>4 季 walk-forward + 2026 真實樣本外(OOS)</li>
-        <li>2022 大空頭(訓練前)表現最強 → 非過擬合</li>
+        <li>4 季 walk-forward + 2026 Q2 真實樣本外(OOS)逐月全正</li>
+        <li>樣本外 Deflated Sharpe 0.99、自助法 p=0.0002(顯著)</li>
         <li>盤中引擎逐筆 100% 等價訓練模型(誤差 0.0000)</li>
       </ul>
     </div>
     <div class="shot">
       <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>walk-forward · OOS</span></div>
       <div class="body"><div class="mockchart" data-seq="20,28,24,36,40,52,48,60,66,58,72,80,76,88,92"></div>
-        <div class="mrow" style="border:0"><span class="dim">4 季累積(模型尺度)</span><span class="red mono">+555%</span></div>
+        <div class="mrow" style="border:0"><span class="dim">4 季累積(模型尺度)</span><span class="red mono">+1,410%</span></div>
       </div>
     </div>
   </div>
 </div></section>
 
 <!-- Workspace -->
-<section id="workspace" class="alt"><div class="wrap">
+<section id="workspace" class="reveal alt"><div class="wrap">
   <div class="sec-head reveal">
     <div class="kick">WORKSPACE</div>
     <h2>盤中工作台 — 看盤與下單合一</h2>
@@ -142,11 +169,11 @@
 </div></section>
 
 <!-- Backtest + Performance teaser -->
-<section id="perf"><div class="wrap">
+<section id="perf" class="reveal"><div class="wrap">
   <div class="sec-head reveal">
     <div class="kick">BACKTEST & PERFORMANCE</div>
     <h2>透明回測 — 不是黑箱</h2>
-    <p>同一套 OPT8c 引擎跑回測與實盤;一年回測 GUI 與獨立重跑「一元不差」。績效完整公開,並誠實標註限制。</p>
+    <p>同一套 OPT8d 引擎跑回測與實盤;一年回測 GUI 與獨立重跑「一元不差」。績效完整公開,並誠實標註限制。</p>
   </div>
   <div class="frow reveal">
     <div class="ftext">
@@ -154,24 +181,24 @@
       <h3>回測 = 實盤 = 模型</h3>
       <p>我們把「回測偏樂觀」的部分也誠實揭露(回測未套每日 5 檔上限、未含真實滑點),讓你看到的是可被獨立驗證的數字。</p>
       <ul>
-        <li>每檔 200 萬・模型尺度 ≈ +1,111 萬元(+555%,與回放同源)</li>
-        <li>4 季 walk-forward 累積 +555%(模型尺度 · chip-only)</li>
+        <li>每檔 200 萬・模型尺度 ≈ +2,820 萬元(+1,410%,與回放同源)</li>
+        <li>4 季 walk-forward 累積 +1,410%(模型尺度 · 全市場 hybrid)</li>
         <li>盤中引擎 = 回測 = 模型,逐筆 100% 等價</li>
       </ul>
       <a class="btn btn-ghost" href="performance.html" style="margin-top:18px">查看完整績效與免責 →</a>
     </div>
     <div class="shot">
-      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>equity curve · 4Q walk-forward · +555%</span></div>
+      <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>equity curve · 4Q walk-forward · +1,410%</span></div>
       <div class="body" style="padding:14px 14px 6px"><div id="equityChart"></div>
         <div class="chart-hint" style="padding:6px 0 0">4 季 walk-forward 累積報酬(模型尺度)· 捲動到此自動描繪</div>
       </div>
     </div>
   </div>
-  <div class="disclaimer reveal">⚠️ 上述為<b>回測(歷史模擬)結果,非實際交易績效</b>。「+555%」為各筆報酬率加總(非複利成長);回測採模型尺度、未含真實滑點與部分成交。<b>過去績效不代表未來表現,投資有風險。</b></div>
+  <div class="disclaimer reveal">⚠️ 上述為<b>回測(歷史模擬)結果,非實際交易績效</b>。「+1,410%」為各筆報酬率加總(非複利成長);回測採模型尺度、未含真實滑點與部分成交。<b>過去績效不代表未來表現,投資有風險。</b></div>
 </div></section>
 
 <!-- Backtest replay -->
-<section id="replay"><div class="wrap">
+<section id="replay" class="reveal"><div class="wrap">
   <div class="sec-head reveal">
     <div class="kick">BACKTEST REPLAY · 互動</div>
     <h2>一年回測回放</h2>
@@ -183,7 +210,7 @@
       <div class="replay-stats">
         <div><span class="rl">日期</span><span id="rpDate" class="rv mono">—</span></div>
         <div><span class="rl">累積損益(元)</span><span id="rpPnl" class="rv mono" style="color:var(--dim)">+0</span></div>
-        <div><span class="rl">交易日</span><span id="rpDay" class="rv mono">0 / 220</span></div>
+        <div><span class="rl">交易日</span><span id="rpDay" class="rv mono">0 / 236</span></div>
       </div>
       <div id="replayChart"></div>
       <div class="replay-ctrl">
@@ -197,7 +224,7 @@
 </div></section>
 
 <!-- Server -->
-<section id="server" class="alt"><div class="wrap">
+<section id="server" class="reveal alt"><div class="wrap">
   <div class="sec-head reveal">
     <div class="kick">SERVER v1.1.0</div>
     <h2>遠端監控 — Discord + Web 儀表板</h2>
@@ -214,7 +241,7 @@
 </div></section>
 
 <!-- How it works -->
-<section id="how" class="alt"><div class="wrap">
+<section id="how" class="reveal alt"><div class="wrap">
   <div class="sec-head reveal">
     <div class="kick">HOW IT WORKS</div>
     <h2>三步開始</h2>
@@ -228,7 +255,7 @@
 </div></section>
 
 <!-- FAQ -->
-<section id="faq"><div class="wrap">
+<section id="faq" class="reveal"><div class="wrap">
   <div class="sec-head reveal">
     <div class="kick">FAQ</div>
     <h2>常見問題</h2>
@@ -243,7 +270,7 @@
 </div></section>
 
 <!-- Download -->
-<section id="download"><div class="wrap">
+<section id="download" class="reveal"><div class="wrap">
   <div class="sec-head reveal">
     <div class="kick">GET STARTED</div>
     <h2>下載 REMORA</h2>
@@ -274,9 +301,10 @@
 </div></div></footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/anim.js"></script>
 <script src="assets/js/lightweight-charts.js"></script>
 <script src="assets/js/charts.js"></script>
-<!-- 瀏覽計數:counterapi.dev(免帳號;每次載入 +1)-->
+<!-- 瀏覽計數:counterapi.dev(免帳號;每次載入 +1;要換自架計數器再改這段)-->
 <div id="vc-badge" style="position:fixed;right:12px;bottom:12px;font:12px/1 system-ui;background:rgba(20,22,28,.82);color:#cfd6e4;padding:6px 10px;border:1px solid #2a2f3a;border-radius:8px;z-index:99">瀏覽 <b id="vc-n">…</b></div>
 <script>fetch('https://api.counterapi.dev/v1/remora_site/views/up').then(function(r){return r.json()}).then(function(d){document.getElementById('vc-n').textContent=d.count}).catch(function(){document.getElementById('vc-badge').style.display='none'})</script>
 </body>

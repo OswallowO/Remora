@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>REMORA · 走勢圖</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+<script src="assets/js/lightweight-charts.js"></script>
+<style>
+:root{--bg:#131722;--panel:#1a1e29;--border:#2a2e39;--text:#e6edf3;--dim:#8b97a6;--red:#ea3943;--green:#16c784}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,'Noto Sans TC','Microsoft JhengHei',sans-serif;overflow:hidden}
+#app{display:flex;flex-direction:column;height:100%}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border);flex-shrink:0;padding-top:max(12px,env(safe-area-inset-top))}
+.sym{font-size:17px;font-weight:700}.sym small{font-size:12px;color:var(--dim);font-weight:400;margin-left:6px}
+.pnl{font-family:'SF Mono',Consolas,monospace;font-size:15px;font-weight:700;padding:4px 10px;border-radius:8px}
+.pnl.up{color:var(--red);background:rgba(234,57,67,.12)}.pnl.dn{color:var(--green);background:rgba(22,199,132,.12)}
+#main{flex:1;display:flex;min-height:0}
+#chart{flex:1;min-width:0}
+#side{display:none}
+footer{display:flex;gap:0;border-top:1px solid var(--border);flex-shrink:0;padding-bottom:env(safe-area-inset-bottom)}
+.cell{flex:1;text-align:center;padding:9px 4px;border-right:1px solid var(--border)}.cell:last-child{border:none}
+.cell .l{font-size:10px;color:var(--dim)}.cell .v{font-size:14px;font-weight:700;font-family:'SF Mono',Consolas,monospace;margin-top:2px}
+/* 桌機版型 */
+body.desktop #main{padding:0}
+body.desktop #side{display:block;width:280px;flex-shrink:0;border-left:1px solid var(--border);background:var(--panel);overflow:auto}
+body.desktop footer{display:none}
+body.desktop #side .row{display:flex;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border);font-size:13px}
+body.desktop #side .row .l{color:var(--dim)}.row .v{font-family:'SF Mono',Consolas,monospace;font-weight:700}
+body.desktop #side h3{padding:14px 16px 8px;font-size:13px;color:var(--dim);font-weight:500}
+.mode-tag{position:fixed;top:8px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--dim);background:var(--panel);padding:2px 10px;border-radius:10px;border:1px solid var(--border);z-index:9;opacity:.7}
+</style>
+</head>
+<body>
+<div id="app">
+  <header><div class="sym" id="sym">—</div><div class="pnl" id="pnl">—</div></header>
+  <div id="main"><div id="chart"></div><div id="side"></div></div>
+  <footer id="foot"></footer>
+</div>
+<div class="mode-tag" id="modeTag"></div>
+<script>
+(function(){
+  var tg = window.Telegram && window.Telegram.WebApp;
+  if(tg){ try{ tg.ready(); tg.expand(); }catch(e){} }
+  // ── 自動偵測:手機 or 桌機(Telegram 平台 → UA → 視窗寬)──
+  function detectMode(){
+    if(tg && tg.platform){
+      if(['android','ios'].indexOf(tg.platform)>=0) return 'mobile';
+      if(['tdesktop','macos','windows','web','weba','webk'].indexOf(tg.platform)>=0) return 'desktop';
+    }
+    var ua = navigator.userAgent||'';
+    if(/Android|iPhone|iPad|iPod|Mobile|Windows Phone/i.test(ua)) return 'mobile';
+    return (window.innerWidth < 768) ? 'mobile' : 'desktop';
+  }
+  var mode = detectMode();
+  document.body.className = mode;
+  document.getElementById('modeTag').textContent = (mode==='mobile'?'📱 手機版':'🖥 桌機版');
+
+  // ── 解析資料(bot 把 {sym,name,candles,volume,markers,trade} gzip+base64 放 URL hash)──
+  function loadData(){
+    try{
+      var h = location.hash.slice(1);
+      if(!h) return null;
+      var bin = atob(h.replace(/-/g,'+').replace(/_/g,'/'));
+      var arr = new Uint8Array(bin.length); for(var i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
+      return JSON.parse(pako.inflate(arr,{to:'string'}));
+    }catch(e){ return null; }
+  }
+  var d = loadData() || window.__SAMPLE__ || {sym:'—',name:'',candles:[],volume:[],markers:[],trade:null};
+
+  document.getElementById('sym').innerHTML = d.sym + (d.name?' <small>'+d.name+'</small>':'');
+  var t = d.trade;
+  if(t){
+    var up = t.pnl_pct>=0;
+    var pe=document.getElementById('pnl'); pe.className='pnl '+(up?'up':'dn');
+    pe.textContent=(up?'+':'')+t.pnl_pct.toFixed(2)+'%';
+    var foot=[['進場',t.entry],['出場',t.exit||'持倉'],['停損',t.stop],['損益',(up?'+':'')+(t.pnl||0).toLocaleString()]];
+    document.getElementById('foot').innerHTML = foot.map(function(f){return '<div class="cell"><div class="l">'+f[0]+'</div><div class="v">'+f[1]+'</div></div>';}).join('');
+    document.getElementById('side').innerHTML = '<h3>本筆交易</h3>'+foot.map(function(f){return '<div class="row"><span class="l">'+f[0]+'</span><span class="v">'+f[1]+'</span></div>';}).join('');
+  }
+
+  // ── 畫圖 ──
+  var LWC = window.LightweightCharts;
+  if(LWC && d.candles && d.candles.length){
+    var el=document.getElementById('chart');
+    var chart=LWC.createChart(el,{
+      layout:{background:{type:'solid',color:'#131722'},textColor:'#8b97a6'},
+      grid:{vertLines:{color:'rgba(42,46,57,.5)'},horzLines:{color:'rgba(42,46,57,.5)'}},
+      rightPriceScale:{borderColor:'#2a2e39'},timeScale:{borderColor:'#2a2e39',timeVisible:true,secondsVisible:false},
+      crosshair:{mode:0}, autoSize:true
+    });
+    var cs=chart.addCandlestickSeries({upColor:'#16c784',downColor:'#ea3943',borderUpColor:'#16c784',borderDownColor:'#ea3943',wickUpColor:'#16c784',wickDownColor:'#ea3943'});
+    cs.setData(d.candles);
+    if(d.volume){ var vs=chart.addHistogramSeries({priceFormat:{type:'volume'},priceScaleId:''}); vs.priceScale().applyOptions({scaleMargins:{top:0.84,bottom:0}}); vs.setData(d.volume); }
+    if(d.markers && d.markers.length) cs.setMarkers(d.markers);
+    if(t && t.stop_price) cs.createPriceLine({price:t.stop_price,color:'#ea3943',lineWidth:1,lineStyle:2,axisLabelVisible:true,title:'停損'});
+    chart.timeScale().fitContent();
+    if(!('ResizeObserver' in window)) {} // autoSize 已處理
+  }
+})();
+</script>
+</body>
+</html>
