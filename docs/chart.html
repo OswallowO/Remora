@@ -118,6 +118,20 @@ body.desktop #side h3{padding:14px 16px 8px;font-size:13px;color:var(--dim);font
     var cs=chart.addCandlestickSeries({upColor:'#16c784',downColor:'#ea3943',borderUpColor:'#16c784',borderDownColor:'#ea3943',wickUpColor:'#16c784',wickDownColor:'#ea3943'});
     cs.setData(d.candles);
     if(d.volume){ var vs=chart.addHistogramSeries({priceFormat:{type:'volume'},priceScaleId:''}); vs.priceScale().applyOptions({scaleMargins:{top:0.84,bottom:0}}); vs.setData(d.volume); }
+    // 損益區塊:進出場之間的紅/綠矩形(賺紅賠綠 = 台股慣例,比照盤中監控 ST-08)
+    if(t && d.markers && d.markers.length){
+      var _em=null,_xm=null;
+      d.markers.forEach(function(m){ if(m.shape==='arrowDown'&&_em===null)_em=m; if(m.shape==='arrowUp')_xm=m; });
+      var _ep=parseFloat(t.entry), _xp=parseFloat(t.exit);
+      if(_em&&_xm&&!isNaN(_ep)&&!isNaN(_xp)){
+        var _lo=Math.min(_ep,_xp), _hi=Math.max(_ep,_xp);
+        var _col=(t.pnl_pct>=0)?'rgba(239,83,80,0.13)':'rgba(38,166,154,0.13)';
+        try{
+          var _rect=chart.addBaselineSeries({baseValue:{type:'price',price:_lo},topLineColor:'transparent',bottomLineColor:'transparent',topFillColor1:_col,topFillColor2:_col,bottomFillColor1:'transparent',bottomFillColor2:'transparent',lineWidth:0,lastValueVisible:false,priceLineVisible:false});
+          _rect.setData([{time:_em.time,value:_hi},{time:_xm.time,value:_hi}]);
+        }catch(e){}
+      }
+    }
     if(d.markers && d.markers.length) cs.setMarkers(d.markers);
     if(t && t.stop_price) cs.createPriceLine({price:t.stop_price,color:'#ea3943',lineWidth:1,lineStyle:2,axisLabelVisible:true,title:'停損'});
     chart.timeScale().fitContent();
