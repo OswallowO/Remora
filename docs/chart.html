@@ -57,7 +57,7 @@ body.desktop #side h3{padding:14px 16px 8px;font-size:13px;color:var(--dim);font
   document.body.className = mode;
   document.getElementById('modeTag').textContent = (mode==='mobile'?'📱 手機版':'🖥 桌機版');
 
-  // ── 解析資料(bot 把 {sym,name,candles,volume,markers,trade} gzip+base64 放 URL hash)──
+  // ── 解析資料(bot 把資料 gzip+base64 放 URL hash)──
   function loadData(){
     try{
       var h = location.hash.slice(1);
@@ -67,7 +67,20 @@ body.desktop #side h3{padding:14px 16px 8px;font-size:13px;color:var(--dim);font
       return JSON.parse(pako.inflate(arr,{to:'string'}));
     }catch(e){ return null; }
   }
-  var d = loadData() || window.__SAMPLE__ || {sym:'—',name:'',candles:[],volume:[],markers:[],trade:null};
+  // 緊湊格式 {s,n,t[],o[],h[],l[],c[],v[],vc[],m[[t,dir,txt]],tr{pp,en,ex,st,pl,sp}} → 還原為畫圖用結構
+  function normalize(r){
+    if(!r) return {sym:'—',name:'',candles:[],volume:[],markers:[],trade:null};
+    if(r.candles) return r;  // 舊版 verbose 格式直接用
+    var T=r.t||[], cand=[], vol=[], mk=[], UP='#16c784', DN='#ea3943';
+    for(var i=0;i<T.length;i++){
+      cand.push({time:T[i],open:r.o[i],high:r.h[i],low:r.l[i],close:r.c[i]});
+      vol.push({time:T[i],value:(r.v?r.v[i]:0),color:((r.vc&&r.vc[i])?'rgba(22,199,132,.5)':'rgba(234,57,67,.5)')});
+    }
+    (r.m||[]).forEach(function(m){ var up=m[1]===1; mk.push({time:m[0],position:up?'belowBar':'aboveBar',color:up?UP:DN,shape:up?'arrowUp':'arrowDown',text:m[2]||''}); });
+    var tr=r.tr?{pnl_pct:r.tr.pp,entry:r.tr.en,exit:r.tr.ex,stop:r.tr.st,pnl:r.tr.pl,stop_price:r.tr.sp}:null;
+    return {sym:r.s||'—',name:r.n||'',candles:cand,volume:vol,markers:mk,trade:tr};
+  }
+  var d = normalize(loadData() || window.__SAMPLE__ || {sym:'—',name:'',candles:[],volume:[],markers:[],trade:null});
 
   document.getElementById('sym').innerHTML = d.sym + (d.name?' <small>'+d.name+'</small>':'');
   var t = d.trade;
