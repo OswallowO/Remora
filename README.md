@@ -6,7 +6,7 @@
 
 [![version](https://img.shields.io/badge/version-2.1.1-1f6feb)](#) [![platform](https://img.shields.io/badge/platform-Windows-555)](#) [![status](https://img.shields.io/badge/status-active-2ea043)](#)
 
-🌐 **產品介紹網站 → https://oswallowo.github.io/remora-data/** （請替換成你實際的 Pages 網址）
+🌐 **產品介紹網站 → [https://oswallowo.github.io/remora-data/](https://oswallowo.github.io/Remora/)**
 
 </div>
 
